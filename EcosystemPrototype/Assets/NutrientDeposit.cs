@@ -15,11 +15,6 @@ public class NutrientDeposit : MonoBehaviour {
 		vectors[Nutrient.Gold] = new Vector3(-0.25f, 0, 0.25f);
 		vectors[Nutrient.Rum] = new Vector3(-0.25f, 0, -0.25f);
 	}
-
-	public enum Nutrient
-	{
-		Sugar, Oxygen, Gold, Rum
-	}
 	
 	public Nutrient nutrient;
 	public int amount;

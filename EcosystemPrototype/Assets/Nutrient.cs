@@ -8,11 +8,9 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 using System;
-namespace AssemblyCSharp
+
+public enum Nutrient
 {
-		public enum Nutrient
-		{
-			SUGAR, OXYGEN, GOLD
-		}
+	Sugar, Oxygen, Gold, Rum
 }
 

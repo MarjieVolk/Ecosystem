@@ -17,11 +17,11 @@ public class Tile : MonoBehaviour {
 	
 	}
 
-	public int nutrientAmount(NutrientDeposit.Nutrient nutrient) {
+	public int nutrientAmount(Nutrient nutrient) {
 		return getNutrientDeposit (nutrient).amount;
 	}
 
-	public void addNutrient(NutrientDeposit.Nutrient nutrient, int amount) {
+	public void addNutrient(Nutrient nutrient, int amount) {
 		NutrientDeposit d = getNutrientDeposit(nutrient);
 
 		if (d != null) {
@@ -33,7 +33,7 @@ public class Tile : MonoBehaviour {
 		}
 	}
 
-	public NutrientDeposit getNutrientDeposit(NutrientDeposit.Nutrient nutrient) {
+	public NutrientDeposit getNutrientDeposit(Nutrient nutrient) {
 		Component[] current = this.gameObject.GetComponents(typeof(NutrientDeposit));
 		NutrientDeposit d;
 		
@@ -47,7 +47,7 @@ public class Tile : MonoBehaviour {
 		return null;
 	}
 
-	public bool removeNutrient(NutrientDeposit.Nutrient nutrient, int amount) {
+	public bool removeNutrient(Nutrient nutrient, int amount) {
 		NutrientDeposit d = getNutrientDeposit(nutrient);
 
 		if (d == null || d.amount < amount) {

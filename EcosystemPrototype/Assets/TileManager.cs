@@ -5,6 +5,7 @@ using System;
 
 public class TileManager : MonoBehaviour {
 
+
 	public static TileManager instance;
 
 	private const float TILE_SCALE = 0.9f;
@@ -46,10 +47,10 @@ public class TileManager : MonoBehaviour {
 		
 		for (int i = 0; i < width; i++) {
 			for (int j = 0; j < height; j++) {
-				addNutrient(i, j, 40, NutrientDeposit.Nutrient.Sugar);
-				addNutrient(i, j, 40, NutrientDeposit.Nutrient.Gold);
-				addNutrient(i, j, 40, NutrientDeposit.Nutrient.Oxygen);
-				addNutrient(i, j, 40, NutrientDeposit.Nutrient.Rum);
+				addNutrient(i, j, 40, Nutrient.Sugar);
+				addNutrient(i, j, 40, Nutrient.Gold);
+				addNutrient(i, j, 40, Nutrient.Oxygen);
+				addNutrient(i, j, 40, Nutrient.Rum);
 			}
 		}
 	}
@@ -134,7 +135,7 @@ public class TileManager : MonoBehaviour {
 		return tile;
 	}
 
-	private void addNutrient(int i, int j, int amount, NutrientDeposit.Nutrient nutrient) {
+	private void addNutrient(int i, int j, int amount, Nutrient nutrient) {
 		Tile tile = getTileComp(i, j);
 		tile.addNutrient(nutrient, amount);
 	}

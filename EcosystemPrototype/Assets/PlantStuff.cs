@@ -6,8 +6,8 @@ using System;
 public class PlantStuff : MonoBehaviour {
 
 	public int visionRange;
-	public NutrientDeposit.Nutrient inputNutrient;
-	public NutrientDeposit.Nutrient outputNutrient;
+	public Nutrient inputNutrient;
+	public Nutrient outputNutrient;
 	public int reproductionCost;
 		
 	private int energy = 0;
