@@ -25,12 +25,12 @@ public class Tile : MonoBehaviour {
 		NutrientDeposit d = getNutrientDeposit(nutrient);
 
 		if (d != null) {
-			d.amount += amount;
+				d.amount += amount;
+		} else {
+				d = (NutrientDeposit)this.gameObject.AddComponent ("NutrientDeposit");
+				d.amount = amount;
+				d.nutrient = nutrient;
 		}
-
-		d = (NutrientDeposit) this.gameObject.AddComponent("NutrientDeposit");
-		d.amount = amount;
-		d.nutrient = nutrient;
 	}
 
 	public NutrientDeposit getNutrientDeposit(NutrientDeposit.Nutrient nutrient) {
