@@ -18,15 +18,7 @@ public class Tile : MonoBehaviour {
 	}
 
 	public int nutrientAmount(NutrientDeposit.Nutrient nutrient) {
-		Component[] nutrients = this.gameObject.GetComponents(typeof(NutrientDeposit));
-		foreach (Component c in nutrients) {
-			NutrientDeposit d = (NutrientDeposit) c;
-			if (d.nutrient == nutrient) {
-				return d.amount;
-			}
-		}
-
-		return 0;
+		return getNutrientDeposit (nutrient).amount;
 	}
 
 	public void addNutrient(NutrientDeposit.Nutrient nutrient, int amount) {
