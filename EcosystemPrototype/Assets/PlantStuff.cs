@@ -24,7 +24,7 @@ public class PlantStuff : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		if (gen.Next(100) > 90) {
+		if (gen.Next(100) > 60) {
 			if (!tile.removeNutrient(inputNutrient, 1)) {
 				UnityEngine.Object.Destroy(this.gameObject);
 				return;

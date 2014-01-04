@@ -235,7 +235,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37a8ebf41a2c264d8319e4e64d60fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 0
+  visionRange: 2
   inputNutrient: 0
   outputNutrient: 1
   reproductionCost: 10
@@ -307,7 +307,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37a8ebf41a2c264d8319e4e64d60fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 0
+  visionRange: 2
   inputNutrient: 1
   outputNutrient: 2
   reproductionCost: 10
@@ -519,7 +519,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37a8ebf41a2c264d8319e4e64d60fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 0
+  visionRange: 2
   inputNutrient: 2
   outputNutrient: 3
   reproductionCost: 10
@@ -671,7 +671,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: b37a8ebf41a2c264d8319e4e64d60fa9, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  visionRange: 0
+  visionRange: 2
   inputNutrient: 3
   outputNutrient: 0
   reproductionCost: 10

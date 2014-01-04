@@ -14,11 +14,14 @@ public class TileManager : MonoBehaviour {
 	public float tileSize;
 
 	private GameObject[,] tiles;
-	private Tile[] highlighted = null;
-	private Material highlightedMaterial = null;
+	private Tile highlighted = null;
+	private Material highlightedMaterialOld = null;
+
+	private Material highlightMaterial;
 
 	void Awake() {
 		instance = this;
+		highlightMaterial = (Material) Resources.Load("Materials/HighlightedTile", typeof(Material));
 
 		float totalWidth = tileSize * width;
 		float totalHeight = tileSize * height;
@@ -59,9 +62,7 @@ public class TileManager : MonoBehaviour {
 	// Update is called once per frame
 	void Update () {
 		if (highlighted != null) {
-			foreach (Tile t in highlighted) {
-				t.renderer.material = highlightedMaterial;
-			}
+			highlighted.renderer.material = highlightedMaterialOld;
 			highlighted = null;
 		}
 
@@ -69,17 +70,14 @@ public class TileManager : MonoBehaviour {
 		RaycastHit hit;
 
 		if (Physics.Raycast(ray, out hit)) {
-			highlighted = getTilesInRange(hit.point, 2);
-			Tile t = highlighted[0];
-			highlightedMaterial = t.renderer.material;
-			t.renderer.material = (Material) Resources.Load("Materials/HighlightedTile", typeof(Material));
+			highlighted = getTileClosestTo(hit.point);
+			highlightedMaterialOld = highlighted.renderer.material;
+			highlighted.renderer.material = highlightMaterial;
 		}
 	}
 
 	void OnGUI() {
-		if (highlighted != null) {
-			//GUI.Label(new Rect(5, 5, 150, 50), "Sugar: " + highlighted.nutrientAmount(NutrientDeposit.Nutrient.Sugar) + "\nGold: " + highlighted.nutrientAmount(NutrientDeposit.Nutrient.Gold));
-		}
+
 	}
 
 	public Tile[] getTilesInRange(Vector3 position, int radius) {
