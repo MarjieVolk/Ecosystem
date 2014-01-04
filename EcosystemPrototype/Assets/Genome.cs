@@ -26,32 +26,34 @@ public class Genome : MonoBehaviour {
 		}
 	}
 
+	public Dictionary<Gene, Allele> getHalfGenome() {
+		Dictionary<Gene, Allele> ret = new Dictionary<Gene, Allele>();
+
+		foreach (Gene type in alleles) {
+			ret[type] = alleles[type].getRandom();
+		}
+
+		return ret;
+	}
+
 	private class GeneObj {
 
 		private static System.Random gen = new System.Random();
-		private Allele dominant;
-		private Allele recessive;
+		public Allele active {get; private set;}
+		public Allele inactive {get; private set;}
 
 		public GeneObj(Allele one, Allele two) {
 			//TODO: decide which is dominant
-			dominant = one;
-			recessive = two;
+			active = one;
+			inactive = two;
 			//TODO: tell dominant it is dominant
-		}
-
-		public Allele getDominant() {
-			return dominant;
-		}
-
-		public Allele getRecessive() {
-			return recessive;
 		}
 
 		public Allele getRandom() {
 			if (gen.Next(2) == 0) {
-				return dominant;
+				return active;
 			} else {
-				return recessive;
+				return inactive;
 			}
 		}
 	}
