@@ -44,7 +44,7 @@ public class NutrientStoreAllele : Allele {
         return overflow;
     }
 
-    public void GetNutrients(Nutrient nutrient)
+    public int GetNutrients(Nutrient nutrient)
     {
         return nutrientStore[nutrient];
     }
