@@ -27,26 +27,12 @@ namespace Assets.Alleles
                 closestTile = TileManager.instance.getTileClosestTo(transform.position);
             }
 
-            for (int i = 0; i < MaxConsumptionRate; i++)
-            {
-                if (!eat()) break;
-            }
-        }
+            int amountAvailable = closestTile.getNutrientDeposit(nutrient).amount;
+            int spaceAvailable = nutrientStore.Capacity - nutrientStore.GetNutrients(nutrient);
 
-        private bool eat()
-        {
-            if (!closestTile.removeNutrient(nutrient, 1))
-            {
-                return false;
-            }
-
-            int overflow = nutrientStore.AddNutrients(nutrient, 1);
-            if (overflow != 0)
-            {
-                //undo the consumption
-                closestTile.addNutrient(nutrient, 1);
-            }
-            return true;
+            int amountToConsume = Math.Max(amountAvailable, Math.Max(spaceAvailable, MaxConsumptionRate));
+            closestTile.removeNutrient(nutrient, amountToConsume);
+            nutrientStore.AddNutrients(nutrient, amountToConsume);
         }
     }
 }
