@@ -40,7 +40,12 @@ namespace Assets.Alleles
                 return false;
             }
 
-            nutrientStore.AddNutrients(nutrient, 1);
+            int overflow = nutrientStore.AddNutrients(nutrient, 1);
+            if (overflow != 0)
+            {
+                //undo the consumption
+                closestTile.addNutrient(nutrient, 1);
+            }
             return true;
         }
     }
