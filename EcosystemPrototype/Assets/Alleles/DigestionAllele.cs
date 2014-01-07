@@ -21,33 +21,21 @@ public class DigestionAllele : Allele {
 	
 	// Update is called once per frame
 	void Update () {
-        for (int i = 0; i < MaxDigestionRate; i++)
-        {
-            if (!digest()) break;
-        }
+        int numDigestions = computeNumDigestions();
+
+        energy.removeEnergy(numDigestions * EnergyInput);
+        energy.addEnergy(numDigestions * EnergyOutput);
+        nutrients.RemoveNutrients(Input, numDigestions);
+        nutrients.AddNutrients(Output, numDigestions);
 	}
 
-    //Digest one unit of the input nutrient into one unit of the output nutrient
-    //Cancel the digestion if there's not enough input or if there's not enough room for the outputs
-    private bool digest()
+    private int computeNumDigestions()
     {
-        if (!energy.removeEnergy(EnergyInput)) return false;
-        if (!nutrients.RemoveNutrients(Input, 1))
-        {
-            energy.addEnergy(EnergyInput);
-            return false;
-        }
+        int availableInputs = nutrients.GetNutrients(Input);
+        int availableNutrientSpace = nutrients.Capacity - nutrients.GetNutrients(Output);
+        int availableEnergy = energy.Energy / EnergyInput;
+        int availableEnergySpace = (energy.MaxEnergy - energy.Energy) / (EnergyOutput - EnergyInput);
 
-        int energyOverflow = energy.addEnergy(EnergyOutput);
-        int nutrientOverflow = nutrients.AddNutrients(Output, 1);
-        if (energyOverflow != 0 || nutrientOverflow != 0)
-        {
-            energy.removeEnergy(EnergyOutput - energyOverflow);
-            energy.addEnergy(EnergyInput);
-            nutrients.AddNutrients(Input, 1);
-            return false;
-        }
-
-        return true;
+        return Mathf.Max(availableInputs, availableNutrientSpace, availableEnergy, availableEnergySpace);
     }
 }
