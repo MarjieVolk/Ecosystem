@@ -36,6 +36,12 @@ public class Genome : MonoBehaviour {
 		return ret;
 	}
 
+    public Allele GetActiveAllele(Gene type)
+    {
+        if (!alleles.ContainsKey(type)) return null;
+        return alleles[type].active;
+    }
+
 	private class GeneObj {
 
 		private static System.Random gen = new System.Random();
