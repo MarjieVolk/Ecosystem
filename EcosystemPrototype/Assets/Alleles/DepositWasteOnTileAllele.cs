@@ -27,21 +27,11 @@ namespace Assets.Alleles
                 closestTile = TileManager.instance.getTileClosestTo(transform.position);
             }
 
-            for (int i = 0; i < MaxDepositRate; i++)
-            {
-                if (!deposit()) break;
-            }
-        }
+            int amountAvailable = nutrientStore.GetNutrients(nutrient);
 
-        private bool deposit()
-        {
-            if (!nutrientStore.RemoveNutrients(nutrient, 1))
-            {
-                return false;
-            }
-
-            closestTile.addNutrient(nutrient, 1);
-            return true;
+            int amountToConsume = Math.Max(amountAvailable, MaxDepositRate);
+            nutrientStore.RemoveNutrients(nutrient, amountToConsume);
+            closestTile.addNutrient(nutrient, amountToConsume);
         }
     }
 }
