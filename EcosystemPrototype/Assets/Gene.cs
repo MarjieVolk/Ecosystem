@@ -3,6 +3,9 @@ using System;
 public enum Gene
 {
     ENERGYSTORE,
-    NUTRIENTSTORE
+    NUTRIENTSTORE,
+	EAT,
+	DIGEST,
+	DEPOSIT
 }
 

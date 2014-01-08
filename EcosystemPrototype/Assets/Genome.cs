@@ -6,12 +6,29 @@ public class Genome : MonoBehaviour {
 
 	private Dictionary<Gene, GeneObj> alleles;
 
-	// Use this for initialization
 	void Start () {
 		alleles = new Dictionary<Gene, GeneObj>();
+
+		// Search for Allele components and register them with old Genome here
+		Allele[] allAlleles = this.gameObject.GetComponents<Allele>();
+		Dictionary<Gene, List<Allele>> temp = new Dictionary<Gene, List<Allele>>();
+		foreach (Allele a in allAlleles) {
+			if (!temp.ContainsKey(a.gene)) {
+				temp[a.gene] = new List<Allele>();
+			}
+
+			temp[a.gene].Add(a);
+		}
+
+		foreach (Gene g in temp.Keys) {
+			List<Allele> geneAlleles = temp[g];
+			if (geneAlleles.Count != 2) {
+				throw new UnityException("There must be exactly 2 alleles corresponding to each gene!");
+			}
+			alleles[g] = new GeneObj(geneAlleles[0], geneAlleles[1]);
+		}
 	}
-	
-	// Update is called once per frame
+
 	void Update () {
 	
 	}
