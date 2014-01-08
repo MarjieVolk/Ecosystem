@@ -21,5 +21,5 @@ public abstract class Allele : MonoBehaviour {
 	
 	}
 
-	protected void SetActive(bool active);
+    protected void SetActive(bool active) { }
 }
