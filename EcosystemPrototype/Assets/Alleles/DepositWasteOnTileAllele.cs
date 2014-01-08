@@ -22,6 +22,7 @@ namespace Assets.Alleles
 
         void Update()
         {
+            if (!IsActive) return;
             if (CanMove)
             {
                 closestTile = TileManager.instance.getTileClosestTo(transform.position);

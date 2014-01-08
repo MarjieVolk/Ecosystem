@@ -20,7 +20,9 @@ public class DigestionAllele : Allele {
 	}
 	
 	// Update is called once per frame
-	void Update () {
+    void Update()
+    {
+        if (!IsActive) return;
         int numDigestions = computeNumDigestions();
 
         energy.removeEnergy(numDigestions * EnergyInput);
