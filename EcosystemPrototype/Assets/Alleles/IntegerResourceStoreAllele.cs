@@ -9,12 +9,17 @@ namespace Assets.Alleles
     {
         public IntegerResourceStore<T> Store { get; private set; }
 
-        public readonly T Type;
-        public readonly int Capacity, InitialAmount;
+        public T Type;
+        public int Capacity, InitialAmount;
 
         void Start()
         {
             Store = new IntegerResourceStore<T>(Type, Capacity, InitialAmount);
+        }
+
+        public override Allele clone()
+        {
+            return new IntegerResourceStoreAllele<T>() { Type = Type, Capacity = Capacity, InitialAmount = InitialAmount };
         }
     }
 }

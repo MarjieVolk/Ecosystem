@@ -35,5 +35,10 @@ namespace Assets.Alleles
             closestTile.removeNutrient(nutrient, amountToConsume);
             nutrientStore.AddNutrients(nutrient, amountToConsume);
         }
+
+        public override Allele clone()
+        {
+            return new EatFromTileAllele() { CanMove = CanMove, nutrient = nutrient, MaxConsumptionRate = MaxConsumptionRate };
+        }
     }
 }

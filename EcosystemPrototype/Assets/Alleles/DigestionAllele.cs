@@ -40,4 +40,9 @@ public class DigestionAllele : Allele {
 
         return Mathf.Max(availableInputs, availableNutrientSpace, availableEnergy, availableEnergySpace);
     }
+
+    public override Allele clone()
+    {
+        return new DigestionAllele() { Input = Input, Output = Output, EnergyInput = EnergyInput, EnergyOutput = EnergyOutput, MaxDigestionRate = MaxDigestionRate };
+    }
 }

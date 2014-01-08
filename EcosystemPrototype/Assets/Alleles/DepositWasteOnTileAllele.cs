@@ -34,5 +34,10 @@ namespace Assets.Alleles
             nutrientStore.RemoveNutrients(nutrient, amountToConsume);
             closestTile.addNutrient(nutrient, amountToConsume);
         }
+
+        public override Allele clone()
+        {
+            return new DepositWasteOnTileAllele() { CanMove = CanMove, nutrient = nutrient, MaxDepositRate = MaxDepositRate };
+        }
     }
 }

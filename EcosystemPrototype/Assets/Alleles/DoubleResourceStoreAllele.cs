@@ -16,5 +16,10 @@ namespace Assets.Alleles
         {
             Store = new DoubleResourceStore<T>(Type, Capacity, InitialAmount);
         }
+
+        public override Allele clone()
+        {
+            return new DoubleResourceStoreAllele<T>() { Type = Type, Capacity = Capacity, InitialAmount = InitialAmount };
+        }
     }
 }
