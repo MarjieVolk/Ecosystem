@@ -22,7 +22,7 @@ public class DigestionAllele : Allele {
 
         //TODO look up nutrient storage properly
         inputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(Gene.NUTRIENTSTORE)).Store;
-        inputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(Gene.NUTRIENTSTORE)).Store;
+        outputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(Gene.NUTRIENTSTORE)).Store;
 	}
 	
 	// Update is called once per frame
