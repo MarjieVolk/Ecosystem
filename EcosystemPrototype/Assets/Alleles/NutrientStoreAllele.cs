@@ -1,5 +1,6 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Collections.Generic;
 
 public class NutrientStoreAllele : Allele {
 
@@ -63,11 +64,12 @@ public class NutrientStoreAllele : Allele {
     /// </returns>
     public bool RemoveNutrients(Nutrient nutrient, int amount)
     {
-        if(nutrientStore[nutrient] == null || nutrientStore[nutrient] < amount)
+        if (nutrientStore[nutrient] == null || nutrientStore[nutrient] < amount)
         {
             return false;
         }
 
         nutrientStore[nutrient] -= amount;
         return true;
+    }
 }
