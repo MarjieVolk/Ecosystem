@@ -1,22 +1,28 @@
 ﻿using UnityEngine;
 using System.Collections;
+using Assets.Alleles;
+using Assets;
 
 public class DigestionAllele : Allele {
 
     public Nutrient Input;
     public Nutrient Output;
-    public int EnergyInput;
-    public int EnergyOutput;
+    public double EnergyInput;
+    public double EnergyOutput;
     public int MaxDigestionRate;
 
-    private NutrientStoreAllele nutrients;
-    private EnergyStoreAllele energy;
+    private IntegerResourceStore inputStore;
+    private IntegerResourceStore outputStore;
+    private DoubleResourceStore energy;
 
 	// Use this for initialization
 	void Start () {
 	    Genome genome = this.gameObject.GetComponent<Genome>();
-        energy = (EnergyStoreAllele)genome.GetActiveAllele(Gene.ENERGYSTORE);
-        nutrients = (NutrientStoreAllele)genome.GetActiveAllele(Gene.NUTRIENTSTORE);
+        energy = ((DoubleResourceStoreAllele)genome.GetActiveAllele(Gene.ENERGYSTORE)).Store;
+
+        //TODO look up nutrient storage properly
+        inputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(Gene.NUTRIENTSTORE)).Store;
+        inputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(Gene.NUTRIENTSTORE)).Store;
 	}
 	
 	// Update is called once per frame
@@ -25,18 +31,18 @@ public class DigestionAllele : Allele {
         if (!IsActive) return;
         int numDigestions = computeNumDigestions();
 
-        energy.removeEnergy(numDigestions * EnergyInput);
-        energy.addEnergy(numDigestions * EnergyOutput);
-        nutrients.RemoveNutrients(Input, numDigestions);
-        nutrients.AddNutrients(Output, numDigestions);
+        energy.removeResource(numDigestions * EnergyInput);
+        energy.addResource(numDigestions * EnergyOutput);
+        inputStore.removeResource(numDigestions);
+        outputStore.addResource(numDigestions);
 	}
 
     private int computeNumDigestions()
     {
-        int availableInputs = nutrients.GetNutrients(Input);
-        int availableNutrientSpace = nutrients.Capacity - nutrients.GetNutrients(Output);
-        int availableEnergy = energy.Energy / EnergyInput;
-        int availableEnergySpace = (energy.MaxEnergy - energy.Energy) / (EnergyOutput - EnergyInput);
+        int availableInputs = inputStore.Amount;
+        int availableNutrientSpace = outputStore.RemainingSpace;
+        int availableEnergy = (int) (energy.Amount / EnergyInput);
+        int availableEnergySpace = (int) (energy.RemainingSpace / (EnergyOutput - EnergyInput));
 
         return Mathf.Max(availableInputs, availableNutrientSpace, availableEnergy, availableEnergySpace);
     }
