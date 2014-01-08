@@ -18,7 +18,7 @@ public class PlantStuff : MonoBehaviour {
 	// Use this for initialization
 	void Start () {
 		tile = TileManager.instance.getTileClosestTo(transform.position);
-		tile.setPlant(this);
+		tile.setPlant(this.gameObject);
 		transform.position = tile.transform.position;
 	}
 	
@@ -57,7 +57,7 @@ public class PlantStuff : MonoBehaviour {
 				child.renderer.material = this.renderer.material;
 
 				comp.tile = t;
-				t.setPlant(comp);
+				t.setPlant(child);
 
 				energy -= reproductionCost;
 			}
