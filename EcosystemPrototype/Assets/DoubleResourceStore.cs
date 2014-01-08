@@ -11,7 +11,7 @@ namespace Assets
         public double Capacity { get; private set; }
         public double Amount { get; private set; }
 
-        public DoubleResourceStore(T type, int capacity, int initalAmount)
+        public DoubleResourceStore(T type, double capacity, double initalAmount)
         {
             StoredResource = type;
             Capacity = capacity;

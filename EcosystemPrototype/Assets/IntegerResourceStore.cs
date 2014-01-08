@@ -5,7 +5,7 @@ using System.Text;
 
 namespace Assets
 {
-    public class IntegerResourceStore<T, V>
+    public class IntegerResourceStore<T>
     {
         public T StoredResource { get; private set; }
         public int Capacity { get; private set; }
