@@ -29,7 +29,7 @@ public class Genome : MonoBehaviour {
 	public Dictionary<Gene, Allele> getHalfGenome() {
 		Dictionary<Gene, Allele> ret = new Dictionary<Gene, Allele>();
 
-		foreach (Gene type in alleles) {
+		foreach (Gene type in alleles.Keys) {
 			ret[type] = alleles[type].getRandom();
 		}
 
