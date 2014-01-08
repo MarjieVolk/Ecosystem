@@ -18,6 +18,7 @@ public class Genome : MonoBehaviour {
 			}
 
 			temp[a.gene].Add(a);
+			a.setGenome(this);
 		}
 
 		foreach (Gene g in temp.Keys) {
@@ -37,6 +38,9 @@ public class Genome : MonoBehaviour {
 		foreach (Gene type in halfOne.Keys) {
 			Allele alleleOne = halfOne[type];
 			Allele alleleTwo = halfTwo[type];
+
+			alleleOne.setGenome(this);
+			alleleTwo.setGenome(this);
 
 			GeneObj gene = new GeneObj(alleleOne, alleleTwo);
 			alleles[type] = gene;

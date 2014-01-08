@@ -12,6 +12,7 @@ public abstract class Allele : MonoBehaviour {
 
 	public Gene gene;
 
+	private Genome genome;
 	private bool _isActive;
 
 	// Use this for initialization
@@ -27,4 +28,8 @@ public abstract class Allele : MonoBehaviour {
     protected void SetActive(bool active) { }
 
 	public abstract Allele clone();
+
+	public void setGenome(Genome g) {
+		this.genome = g;
+	}
 }
