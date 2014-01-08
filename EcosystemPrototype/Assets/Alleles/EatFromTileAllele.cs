@@ -12,12 +12,13 @@ namespace Assets.Alleles
         public int MaxConsumptionRate;
 
         private Tile closestTile;
-        private NutrientStoreAllele nutrientStore;
+        private IntegerResourceStore nutrientStore;
 
         void Start()
         {
             closestTile = TileManager.instance.getTileClosestTo(transform.position);
-            nutrientStore = (NutrientStoreAllele)gameObject.GetComponent<Genome>().GetActiveAllele(Gene.NUTRIENTSTORE);
+            //TODO specify the nutrient store being fetched properly
+            nutrientStore = ((IntegerResourceStoreAllele)gameObject.GetComponent<Genome>().GetActiveAllele(Gene.NUTRIENTSTORE)).Store;
         }
 
         void Update()
@@ -29,11 +30,11 @@ namespace Assets.Alleles
             }
 
             int amountAvailable = closestTile.getNutrientDeposit(nutrient).amount;
-            int spaceAvailable = nutrientStore.Capacity - nutrientStore.GetNutrients(nutrient);
+            int spaceAvailable = nutrientStore.RemainingSpace;
 
             int amountToConsume = Math.Max(amountAvailable, Math.Max(spaceAvailable, MaxConsumptionRate));
             closestTile.removeNutrient(nutrient, amountToConsume);
-            nutrientStore.AddNutrients(nutrient, amountToConsume);
+            nutrientStore.addResource(amountToConsume);
         }
 
         public override Allele clone()
