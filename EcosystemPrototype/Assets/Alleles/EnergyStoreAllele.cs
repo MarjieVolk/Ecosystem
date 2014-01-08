@@ -6,8 +6,7 @@ public class EnergyStoreAllele : Allele {
 	public int StartingEnergy;
 	public int MaxEnergy;
 
-	public int Energy{ get; }
-	private int _energy;
+    public int Energy { get; private set; }
 
 	/// <summary>
 	/// Adds the energy.
@@ -16,12 +15,14 @@ public class EnergyStoreAllele : Allele {
 	/// <param name="toBeAdded">The energy to be added.</param>
 	public int addEnergy(int toBeAdded)
 	{
-		int nextEnergy = _energy + toBeAdded;
+		int nextEnergy = Energy + toBeAdded;
 		int overflowEnergy = 0;
 		if (nextEnergy > MaxEnergy) {
 			overflowEnergy = nextEnergy - MaxEnergy;
 			nextEnergy = MaxEnergy;
 		}
+
+        Energy = nextEnergy;
 
 		return overflowEnergy;
 	}
@@ -33,18 +34,18 @@ public class EnergyStoreAllele : Allele {
 	/// <param name="toBeRemoved">The energy to be removed.</param>
 	public bool removeEnergy(int toBeRemoved)
 	{
-		int nextEnergy = _energy - toBeRemoved;
+		int nextEnergy = Energy - toBeRemoved;
 		if (nextEnergy < 0) {
 			return false;
 		}
 
-		_energy = nextEnergy;
+		Energy = nextEnergy;
 		return true;
 	}
 
 	// Use this for initialization
 	void Start () {
-		_energy = StartingEnergy;
+		Energy = StartingEnergy;
 	}
 	
 	// Update is called once per frame
