@@ -27,7 +27,7 @@ public class NutrientStoreAllele : Allele {
     /// </returns>
     public int AddNutrients(Nutrient nutrient, int amount)
     {
-        if (nutrientStore[nutrient] == null)
+        if (!nutrientStore.ContainsKey(nutrient))
         {
             nutrientStore[nutrient] = 0;
         }
@@ -64,7 +64,7 @@ public class NutrientStoreAllele : Allele {
     /// </returns>
     public bool RemoveNutrients(Nutrient nutrient, int amount)
     {
-        if (nutrientStore[nutrient] == null || nutrientStore[nutrient] < amount)
+        if (!nutrientStore.ContainsKey(nutrient) || nutrientStore[nutrient] < amount)
         {
             return false;
         }
