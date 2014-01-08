@@ -9,6 +9,7 @@ namespace Assets
     {
         public double Capacity { get; private set; }
         public double Amount { get; private set; }
+        public double RemainingSpace { get { return Capacity - Amount; } }
 
         public DoubleResourceStore(double capacity, double initalAmount)
         {

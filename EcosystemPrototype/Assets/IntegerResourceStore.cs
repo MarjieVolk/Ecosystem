@@ -9,6 +9,7 @@ namespace Assets
     {
         public int Capacity { get; private set; }
         public int Amount { get; private set; }
+        public int RemainingSpace { get { return Capacity - Amount; } }
 
         public IntegerResourceStore(int capacity, int initalAmount)
         {
