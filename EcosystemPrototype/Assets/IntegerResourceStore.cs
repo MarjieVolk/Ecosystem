@@ -5,15 +5,13 @@ using System.Text;
 
 namespace Assets
 {
-    public class IntegerResourceStore<T>
+    public class IntegerResourceStore
     {
-        public T StoredResource { get; private set; }
         public int Capacity { get; private set; }
         public int Amount { get; private set; }
 
-        public IntegerResourceStore(T type, int capacity, int initalAmount)
+        public IntegerResourceStore(int capacity, int initalAmount)
         {
-            StoredResource = type;
             Capacity = capacity;
             Amount = initalAmount;
         }

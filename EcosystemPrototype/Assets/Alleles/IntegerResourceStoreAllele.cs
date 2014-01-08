@@ -5,21 +5,20 @@ using System.Text;
 
 namespace Assets.Alleles
 {
-    public class IntegerResourceStoreAllele<T> : Allele
+    public class IntegerResourceStoreAllele : Allele
     {
-        public IntegerResourceStore<T> Store { get; private set; }
+        public IntegerResourceStore Store { get; private set; }
 
-        public T Type;
         public int Capacity, InitialAmount;
 
         void Start()
         {
-            Store = new IntegerResourceStore<T>(Type, Capacity, InitialAmount);
+            Store = new IntegerResourceStore(Capacity, InitialAmount);
         }
 
         public override Allele clone()
         {
-            return new IntegerResourceStoreAllele<T>() { Type = Type, Capacity = Capacity, InitialAmount = InitialAmount };
+            return new IntegerResourceStoreAllele() { Capacity = Capacity, InitialAmount = InitialAmount };
         }
     }
 }

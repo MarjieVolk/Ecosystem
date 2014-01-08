@@ -5,15 +5,13 @@ using System.Text;
 
 namespace Assets
 {
-    public class DoubleResourceStore<T>
+    public class DoubleResourceStore
     {
-        public T StoredResource { get; private set; }
         public double Capacity { get; private set; }
         public double Amount { get; private set; }
 
-        public DoubleResourceStore(T type, double capacity, double initalAmount)
+        public DoubleResourceStore(double capacity, double initalAmount)
         {
-            StoredResource = type;
             Capacity = capacity;
             Amount = initalAmount;
         }
