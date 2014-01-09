@@ -5,14 +5,14 @@ using Assets.Alleles;
 
 public class Genome : MonoBehaviour {
 
-	private Dictionary<Gene, GeneObj> alleles;
+	private Dictionary<string, GeneObj> alleles;
 
 	void Start () {
-		alleles = new Dictionary<Gene, GeneObj>();
+		alleles = new Dictionary<string, GeneObj>();
 
 		// Search for Allele components and register them with old Genome here
 		Allele[] allAlleles = this.gameObject.GetComponents<Allele>();
-		Dictionary<Gene, List<Allele>> temp = new Dictionary<Gene, List<Allele>>();
+		Dictionary<string, List<Allele>> temp = new Dictionary<string, List<Allele>>();
 		foreach (Allele a in allAlleles) {
 			if (!temp.ContainsKey(a.gene)) {
 				temp[a.gene] = new List<Allele>();
@@ -22,12 +22,12 @@ public class Genome : MonoBehaviour {
 			a.setGenome(this);
 		}
 
-		foreach (Gene g in temp.Keys) {
-			List<Allele> geneAlleles = temp[g];
+		foreach (string gene in temp.Keys) {
+			List<Allele> geneAlleles = temp[gene];
 			if (geneAlleles.Count != 2) {
 				throw new UnityException("There must be exactly 2 alleles corresponding to each gene!");
 			}
-			alleles[g] = new GeneObj(geneAlleles[0], geneAlleles[1]);
+			alleles[gene] = new GeneObj(geneAlleles[0], geneAlleles[1]);
 		}
 	}
 
@@ -35,8 +35,8 @@ public class Genome : MonoBehaviour {
 	
 	}
 
-	public void init(Dictionary<Gene, Allele> halfOne, Dictionary<Gene, Allele> halfTwo) {
-		foreach (Gene type in halfOne.Keys) {
+	public void init(Dictionary<string, Allele> halfOne, Dictionary<string, Allele> halfTwo) {
+		foreach (string type in halfOne.Keys) {
 			Allele alleleOne = halfOne[type];
 			Allele alleleTwo = halfTwo[type];
 
@@ -48,17 +48,17 @@ public class Genome : MonoBehaviour {
 		}
 	}
 
-	public Dictionary<Gene, Allele> getHalfGenome() {
-		Dictionary<Gene, Allele> ret = new Dictionary<Gene, Allele>();
+	public Dictionary<string, Allele> getHalfGenome() {
+		Dictionary<string, Allele> ret = new Dictionary<string, Allele>();
 
-		foreach (Gene type in alleles.Keys) {
+		foreach (string type in alleles.Keys) {
 			ret[type] = alleles[type].getRandom();
 		}
 
 		return ret;
 	}
 
-    public Allele GetActiveAllele(Gene type)
+    public Allele GetActiveAllele(string type)
     {
         if (!alleles.ContainsKey(type)) return null;
         return alleles[type].active;

@@ -19,7 +19,7 @@ namespace Assets.Alleles
             }
         }
 
-        public Gene gene;
+        public string gene;
 
         private Genome genome;
         private bool _isActive;
