@@ -7,5 +7,11 @@ namespace Assets.Alleles
 {
     public class InheritSeparatelyAttribute : Attribute
     {
+        public string InheritanceGroup;
+
+        public InheritSeparatelyAttribute(string inheritanceGroup)
+        {
+            this.InheritanceGroup = inheritanceGroup;
+        }
     }
 }
