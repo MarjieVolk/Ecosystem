@@ -7,8 +7,11 @@ namespace Assets.Alleles
 {
     public class EatFromTileAllele : Allele
     {
+        [GeneticallyInheritable]
         public bool CanMove;
+        [GeneticallyInheritable]
         public Nutrient nutrient;
+        [GeneticallyInheritable]
         public int MaxConsumptionRate;
 
         private Tile closestTile;

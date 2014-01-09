@@ -7,11 +7,15 @@ namespace Assets.Alleles
 {
     public class DigestionAllele : Allele
     {
-
+        [GeneticallyInheritable]
         public Nutrient Input;
+        [GeneticallyInheritable]
         public Nutrient Output;
+        [GeneticallyInheritable]
         public double EnergyInput;
+        [GeneticallyInheritable]
         public double EnergyOutput;
+        [GeneticallyInheritable]
         public int MaxDigestionRate;
 
         private IntegerResourceStore inputStore;

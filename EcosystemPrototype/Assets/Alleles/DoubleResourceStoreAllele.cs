@@ -9,6 +9,7 @@ namespace Assets.Alleles
     {
         public DoubleResourceStore Store { get; private set; }
 
+        [GeneticallyInheritable]
         public double Capacity, InitialAmount;
 
         void Start()

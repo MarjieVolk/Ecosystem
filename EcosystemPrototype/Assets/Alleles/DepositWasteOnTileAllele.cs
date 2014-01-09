@@ -7,8 +7,11 @@ namespace Assets.Alleles
 {
     public class DepositWasteOnTileAllele : Allele
     {
+        [GeneticallyInheritable]
         public bool CanMove;
+        [GeneticallyInheritable]
         public Nutrient nutrient;
+        [GeneticallyInheritable]
         public int MaxDepositRate;
 
         private Tile closestTile;
