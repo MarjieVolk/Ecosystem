@@ -3,7 +3,7 @@ using System.Collections;
 using Assets.Alleles;
 using Assets;
 
-namespace Assets.Alleles
+namespace Assets.Alleles.FunctionalAlleles
 {
     public class DigestionAllele : Allele
     {

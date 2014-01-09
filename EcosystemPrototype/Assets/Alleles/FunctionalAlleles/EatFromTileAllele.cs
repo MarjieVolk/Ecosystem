@@ -3,16 +3,16 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace Assets.Alleles
+namespace Assets.Alleles.FunctionalAlleles
 {
-    public class DepositWasteOnTileAllele : Allele
+    public class EatFromTileAllele : Allele
     {
         [GeneticallyInheritable]
         public bool CanMove;
         [GeneticallyInheritable]
         public Nutrient nutrient;
         [GeneticallyInheritable]
-        public int MaxDepositRate;
+        public int MaxConsumptionRate;
 
         private Tile closestTile;
         private IntegerResourceStore nutrientStore;
@@ -20,6 +20,7 @@ namespace Assets.Alleles
         void Start()
         {
             closestTile = TileManager.instance.getTileClosestTo(transform.position);
+            //TODO specify the nutrient store being fetched properly
             nutrientStore = ((IntegerResourceStoreAllele)gameObject.GetComponent<Genome>().GetActiveAllele(Gene.NUTRIENTSTORE)).Store;
         }
 
@@ -31,16 +32,17 @@ namespace Assets.Alleles
                 closestTile = TileManager.instance.getTileClosestTo(transform.position);
             }
 
-            int amountAvailable = nutrientStore.Amount;
+            int amountAvailable = closestTile.getNutrientDeposit(nutrient).Store.Amount;
+            int spaceAvailable = nutrientStore.RemainingSpace;
 
-            int amountToConsume = Math.Max(amountAvailable, MaxDepositRate);
-            nutrientStore.removeResource(amountToConsume);
-            closestTile.addNutrient(nutrient, amountToConsume);
+            int amountToConsume = Math.Max(amountAvailable, Math.Max(spaceAvailable, MaxConsumptionRate));
+            closestTile.removeNutrient(nutrient, amountToConsume);
+            nutrientStore.addResource(amountToConsume);
         }
 
         public override Allele clone()
         {
-            return new DepositWasteOnTileAllele() { CanMove = CanMove, nutrient = nutrient, MaxDepositRate = MaxDepositRate };
+            return new EatFromTileAllele() { CanMove = CanMove, nutrient = nutrient, MaxConsumptionRate = MaxConsumptionRate };
         }
     }
 }
