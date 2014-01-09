@@ -29,7 +29,7 @@ namespace Assets.Alleles
                 closestTile = TileManager.instance.getTileClosestTo(transform.position);
             }
 
-            int amountAvailable = closestTile.getNutrientDeposit(nutrient).amount;
+            int amountAvailable = closestTile.getNutrientDeposit(nutrient).Store.Amount;
             int spaceAvailable = nutrientStore.RemainingSpace;
 
             int amountToConsume = Math.Max(amountAvailable, Math.Max(spaceAvailable, MaxConsumptionRate));

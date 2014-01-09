@@ -18,17 +18,17 @@ public class Tile : MonoBehaviour {
 	}
 
 	public int nutrientAmount(Nutrient nutrient) {
-		return getNutrientDeposit (nutrient).amount;
+		return getNutrientDeposit (nutrient).Store.Amount;
 	}
 
 	public void addNutrient(Nutrient nutrient, int amount) {
 		NutrientDeposit d = getNutrientDeposit(nutrient);
 
 		if (d != null) {
-				d.amount += amount;
+            d.Store.addResource(amount);
 		} else {
 				d = (NutrientDeposit)this.gameObject.AddComponent ("NutrientDeposit");
-				d.amount = amount;
+				d.Store.addResource(amount);
 				d.nutrient = nutrient;
 		}
 	}
@@ -50,12 +50,7 @@ public class Tile : MonoBehaviour {
 	public bool removeNutrient(Nutrient nutrient, int amount) {
 		NutrientDeposit d = getNutrientDeposit(nutrient);
 
-		if (d == null || d.amount < amount) {
-			return false;
-		}
-
-		d.amount -= amount;
-		return true;
+        return d != null && d.Store.removeResource(amount);
 	}
 
 	public bool hasPlant() {

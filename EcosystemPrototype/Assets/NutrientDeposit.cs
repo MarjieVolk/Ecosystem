@@ -1,6 +1,7 @@
 ﻿using UnityEngine;
 using System.Collections;
 using System.Collections.Generic;
+using Assets;
 
 public class NutrientDeposit : MonoBehaviour {
 	
@@ -17,9 +18,14 @@ public class NutrientDeposit : MonoBehaviour {
 	}
 	
 	public Nutrient nutrient;
-	public int amount;
+    public IntegerResourceStore Store;
 
 	private GameObject rend;
+
+    public NutrientDeposit()
+    {
+        Store = new IntegerResourceStore(int.MaxValue, 0);
+    }
 
 	// Use this for initialization
 	void Start () {
@@ -30,7 +36,7 @@ public class NutrientDeposit : MonoBehaviour {
 	
 	// Update is called once per frame
 	void Update () {
-		float scale = Mathf.Min(amount, MAX) / MAX;
+		float scale = Mathf.Min(Store.Amount, MAX) / MAX;
 		if (scale != 0)
 			scale = 0.2f + (0.8f * scale);
 		rend.transform.localScale = scale * new Vector3(this.transform.localScale.x, this.transform.localScale.x, this.transform.localScale.z) / 2;
