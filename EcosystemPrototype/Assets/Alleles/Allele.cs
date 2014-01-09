@@ -4,50 +4,60 @@ using System.Reflection;
 using System;
 using Assets.Alleles;
 
-public abstract class Allele : MonoBehaviour {
-
-	public bool IsActive { get { return _isActive; } set
-		{
-			_isActive = value;
-			SetActive(value);
-		}
-	}
-
-	public Gene gene;
-
-	private Genome genome;
-	private bool _isActive;
-
-	// Use this for initialization
-	void Start () {
-	
-	}
-	
-	// Update is called once per frame
-	void Update () {
-	
-	}
-
-    protected void SetActive(bool active) { }
-
-    public void clone(Allele template)
+namespace Assets.Alleles
+{
+    public abstract class Allele : MonoBehaviour
     {
-        if(template == null || template.GetType() != this.GetType())
-            throw new ArgumentException();
-        //for each field in the shared type
-        FieldInfo[] fields = this.GetType().GetFields();
-        foreach(FieldInfo field in fields)
+
+        public bool IsActive
         {
-            //if it should be copied
-            if (field.GetCustomAttributes(typeof(GeneticallyInheritableAttribute), false).Length > 0)
+            get { return _isActive; }
+            set
             {
-                //copy it
-                field.SetValue(this, field.GetValue(template));
+                _isActive = value;
+                SetActive(value);
             }
         }
-    }
 
-	public void setGenome(Genome g) {
-		this.genome = g;
-	}
+        public Gene gene;
+
+        private Genome genome;
+        private bool _isActive;
+
+        // Use this for initialization
+        void Start()
+        {
+
+        }
+
+        // Update is called once per frame
+        void Update()
+        {
+
+        }
+
+        protected void SetActive(bool active) { }
+
+        public void clone(Allele template)
+        {
+            if (template == null || template.GetType() != this.GetType())
+                throw new ArgumentException();
+            //for each field in the shared type
+            FieldInfo[] fields = this.GetType().GetFields();
+            foreach (FieldInfo field in fields)
+            {
+                //if it should be copied
+                if (field.GetCustomAttributes(typeof(GeneticallyInheritableAttribute), false).Length > 0)
+                {
+                    //copy it
+                    field.SetValue(this, field.GetValue(template));
+                }
+            }
+        }
+
+        public void setGenome(Genome g)
+        {
+            this.genome = g;
+        }
+    }
 }
