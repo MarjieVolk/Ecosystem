@@ -49,7 +49,7 @@ namespace Assets.Alleles
                 //if it should be copied
                 if (field.GetCustomAttributes(typeof(GeneticallyInheritableAttribute), false).Length > 0)
                 {
-                    //copy it
+                    //(shallow) copy it.  Assumed to be fine b/c this is genetic configuration information and should not mutate.
                     field.SetValue(this, field.GetValue(template));
                 }
             }
