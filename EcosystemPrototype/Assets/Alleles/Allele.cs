@@ -1,5 +1,8 @@
 ﻿using UnityEngine;
 using System.Collections;
+using System.Reflection;
+using System;
+using Assets.Alleles;
 
 public abstract class Allele : MonoBehaviour {
 
@@ -27,7 +30,22 @@ public abstract class Allele : MonoBehaviour {
 
     protected void SetActive(bool active) { }
 
-	public abstract Allele clone();
+    public void clone(Allele template)
+    {
+        if(template == null || template.GetType() != this.GetType())
+            throw new ArgumentException();
+        //for each field in the shared type
+        FieldInfo[] fields = this.GetType().GetFields();
+        foreach(FieldInfo field in fields)
+        {
+            //if it should be copied
+            if (field.GetCustomAttributes(typeof(GeneticallyInheritableAttribute), false).Length > 0)
+            {
+                //copy it
+                field.SetValue(this, field.GetValue(template));
+            }
+        }
+    }
 
 	public void setGenome(Genome g) {
 		this.genome = g;
