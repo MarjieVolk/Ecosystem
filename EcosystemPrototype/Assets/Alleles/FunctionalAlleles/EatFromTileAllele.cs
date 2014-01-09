@@ -39,10 +39,5 @@ namespace Assets.Alleles.FunctionalAlleles
             closestTile.removeNutrient(nutrient, amountToConsume);
             nutrientStore.addResource(amountToConsume);
         }
-
-        public override Allele clone()
-        {
-            return new EatFromTileAllele() { CanMove = CanMove, nutrient = nutrient, MaxConsumptionRate = MaxConsumptionRate };
-        }
     }
 }

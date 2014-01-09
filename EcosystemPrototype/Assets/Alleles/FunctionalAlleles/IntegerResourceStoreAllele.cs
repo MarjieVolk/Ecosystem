@@ -16,10 +16,5 @@ namespace Assets.Alleles.FunctionalAlleles
         {
             Store = new IntegerResourceStore(Capacity, InitialAmount);
         }
-
-        public override Allele clone()
-        {
-            return new IntegerResourceStoreAllele() { Capacity = Capacity, InitialAmount = InitialAmount };
-        }
     }
 }
