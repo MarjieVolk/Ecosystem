@@ -196,7 +196,8 @@ public class Genome : MonoBehaviour {
             //NOTE: if this behavior changes it will break generateDataAlleles and generateNumericDataAlleles.  Perhaps make them a different constructor?
 			active = one;
 			inactive = two;
-			//TODO: tell dominant it is dominant
+			one.IsActive = true;
+			two.IsActive = false;
 		}
 
 		public Allele getRandom() {
