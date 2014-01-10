@@ -8,10 +8,12 @@ namespace Assets.Alleles
     public class InheritSeparatelyAttribute : Attribute
     {
         public string InheritanceGroup;
+        public object DefaultValue;
 
-        public InheritSeparatelyAttribute(string inheritanceGroup)
+        public InheritSeparatelyAttribute(string inheritanceGroup, object defaultValue)
         {
             this.InheritanceGroup = inheritanceGroup;
+            this.DefaultValue = defaultValue;
         }
     }
 }
