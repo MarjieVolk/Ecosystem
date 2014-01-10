@@ -22,15 +22,18 @@ namespace Assets.Alleles.FunctionalAlleles
         private IntegerResourceStore outputStore;
         private DoubleResourceStore energy;
 
+        private const string ENERGY_STORE = "energystore";
+        private const string NUTRIENT_STORE = "nutrientstore";
+
         // Use this for initialization
         void Start()
         {
             Genome genome = this.gameObject.GetComponent<Genome>();
-            energy = ((DoubleResourceStoreAllele)genome.GetActiveAllele(Gene.ENERGYSTORE)).Store;
+            energy = ((DoubleResourceStoreAllele)genome.GetActiveAllele(ENERGY_STORE)).Store;
 
             //TODO look up nutrient storage properly
-            inputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(Gene.NUTRIENTSTORE)).Store;
-            outputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(Gene.NUTRIENTSTORE)).Store;
+            inputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(NUTRIENT_STORE)).Store;
+            outputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(NUTRIENT_STORE)).Store;
         }
 
         // Update is called once per frame
