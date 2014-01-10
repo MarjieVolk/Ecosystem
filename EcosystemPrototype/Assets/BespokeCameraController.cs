@@ -11,6 +11,8 @@ public class BespokeCameraController : MonoBehaviour {
 	public float minDistance, maxDistance;
 	public float minYAngle, maxYAngle;
 
+    public float panSpeed;
+
 	// Use this for initialization
 	void Start () {
 
@@ -42,5 +44,27 @@ public class BespokeCameraController : MonoBehaviour {
 						return;
 
 		transform.position += direction;
+
+		Vector3 translation = new Vector3(0, 0, 0);
+
+		if (Input.GetKey(KeyCode.W) || Input.GetKey(KeyCode.UpArrow)) {
+			translation += new Vector3(transform.forward.x, 0, transform.forward.z);
+        }
+
+		if (Input.GetKey(KeyCode.A) || Input.GetKey(KeyCode.LeftArrow)) {
+			translation += Vector3.Cross(transform.forward, new Vector3(0, 1, 0));
+        }
+
+		if (Input.GetKey(KeyCode.S) || Input.GetKey(KeyCode.DownArrow)) {
+			translation += new Vector3(-transform.forward.x, 0, -transform.forward.z);
+        }
+
+		if (Input.GetKey(KeyCode.D) || Input.GetKey(KeyCode.RightArrow)) {
+			translation += Vector3.Cross(new Vector3(0, 1, 0), transform.forward);
+        }
+
+		translation.Normalize();
+		transform.position += translation * panSpeed;
+		target += translation * panSpeed;
 	}
 }

@@ -216,7 +216,6 @@ GameObject:
   - 4: {fileID: 310973685}
   - 33: {fileID: 310973684}
   - 23: {fileID: 310973683}
-  - 114: {fileID: 310973682}
   - 114: {fileID: 310973686}
   m_Layer: 0
   m_Name: Plant
@@ -225,21 +224,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &310973682
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 310973681}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b37a8ebf41a2c264d8319e4e64d60fa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visionRange: 2
-  inputNutrient: 0
-  outputNutrient: 1
-  reproductionCost: 10
 --- !u!23 &310973683
 Renderer:
   m_ObjectHideFlags: 0
@@ -300,7 +284,6 @@ GameObject:
   - 4: {fileID: 575575673}
   - 33: {fileID: 575575672}
   - 23: {fileID: 575575671}
-  - 114: {fileID: 575575670}
   m_Layer: 0
   m_Name: Plant2
   m_TagString: Untagged
@@ -308,21 +291,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &575575670
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 575575669}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b37a8ebf41a2c264d8319e4e64d60fa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visionRange: 2
-  inputNutrient: 1
-  outputNutrient: 2
-  reproductionCost: 10
 --- !u!23 &575575671
 Renderer:
   m_ObjectHideFlags: 0
@@ -358,7 +326,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 575575669}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -2.50142288, y: 0, z: .0549457073}
+  m_LocalPosition: {x: 4.40502548, y: 0, z: 46.0358047}
   m_LocalScale: {x: 1, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -512,7 +480,6 @@ GameObject:
   - 4: {fileID: 924504071}
   - 33: {fileID: 924504070}
   - 23: {fileID: 924504069}
-  - 114: {fileID: 924504068}
   m_Layer: 0
   m_Name: Plant3
   m_TagString: Untagged
@@ -520,21 +487,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &924504068
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 924504067}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b37a8ebf41a2c264d8319e4e64d60fa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visionRange: 2
-  inputNutrient: 2
-  outputNutrient: 3
-  reproductionCost: 10
 --- !u!23 &924504069
 Renderer:
   m_ObjectHideFlags: 0
@@ -570,7 +522,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 924504067}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: -6.24012756, y: 0, z: 5.5673914}
+  m_LocalPosition: {x: .666320801, y: 0, z: 51.5482559}
   m_LocalScale: {x: 1, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -674,6 +626,7 @@ MonoBehaviour:
   maxDistance: 85
   minYAngle: 10
   maxYAngle: 80
+  panSpeed: .300000012
 --- !u!1 &978925659
 GameObject:
   m_ObjectHideFlags: 0
@@ -684,7 +637,6 @@ GameObject:
   - 4: {fileID: 978925663}
   - 33: {fileID: 978925662}
   - 23: {fileID: 978925661}
-  - 114: {fileID: 978925660}
   m_Layer: 0
   m_Name: Plant4
   m_TagString: Untagged
@@ -692,21 +644,6 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
---- !u!114 &978925660
-MonoBehaviour:
-  m_ObjectHideFlags: 0
-  m_PrefabParentObject: {fileID: 0}
-  m_PrefabInternal: {fileID: 0}
-  m_GameObject: {fileID: 978925659}
-  m_Enabled: 1
-  m_EditorHideFlags: 0
-  m_Script: {fileID: 11500000, guid: b37a8ebf41a2c264d8319e4e64d60fa9, type: 3}
-  m_Name: 
-  m_EditorClassIdentifier: 
-  visionRange: 2
-  inputNutrient: 3
-  outputNutrient: 0
-  reproductionCost: 10
 --- !u!23 &978925661
 Renderer:
   m_ObjectHideFlags: 0
@@ -742,7 +679,7 @@ Transform:
   m_PrefabInternal: {fileID: 0}
   m_GameObject: {fileID: 978925659}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: .572565079, y: 0, z: -5.30662441}
+  m_LocalPosition: {x: 7.47901344, y: 0, z: 40.6742325}
   m_LocalScale: {x: 1, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
