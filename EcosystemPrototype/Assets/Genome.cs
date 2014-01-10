@@ -32,7 +32,6 @@ public class Genome : MonoBehaviour {
         foreach (string gene in alleles.Keys)
         {
             GeneObj genotype = alleles[gene];
-            Allele allele = genotype.active;
 
             //generate the data alleles for the active and inactive alleles in that gene
             Dictionary<string, DataAllele> activeDataAlleles = generateDataAlleles(genotype.active);
