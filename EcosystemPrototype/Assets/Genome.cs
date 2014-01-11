@@ -10,17 +10,17 @@ using System.Linq;
 public class Genome : MonoBehaviour {
 
 	private Dictionary<string, GeneObj> alleles;
-    private const string GENE_DELIMITER = ".";
+    public const string GENE_DELIMITER = ".";
 
-	void Start () {
+	void Awake () {
         //Assumption:
         //Every editor-defined allele will be present at this time
         //No non-editor-defined alleles will be present at this time
 		alleles = new Dictionary<string, GeneObj>();
 
         registerAlleleComponents();
-        generateDataAlleles();
-        generateNumericDataAlleles();
+        //generateDataAlleles();
+        //generateNumericDataAlleles();
 	}
 
     private void generateDataAlleles()
@@ -145,9 +145,9 @@ public class Genome : MonoBehaviour {
             List<Allele> geneAlleles = temp[gene];
             if (geneAlleles.Count != 2)
             {
-                throw new UnityException("There must be exactly 2 alleles corresponding to each gene!");
+                //throw new UnityException("There must be exactly 2 alleles corresponding to each gene!");
             }
-            alleles[gene] = new GeneObj(geneAlleles[0], geneAlleles[1]);
+            alleles[gene] = new GeneObj(geneAlleles[0], null);
         }
     }
 
@@ -196,7 +196,7 @@ public class Genome : MonoBehaviour {
 			active = one;
 			inactive = two;
 			one.IsActive = true;
-			two.IsActive = false;
+			//two.IsActive = false;
 		}
 
 		public Allele getRandom() {

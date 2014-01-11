@@ -35,7 +35,7 @@ namespace Assets.Alleles.FunctionalAlleles
 
             int amountAvailable = nutrientStore.Amount;
 
-            int amountToConsume = Math.Max(amountAvailable, MaxDepositRate);
+            int amountToConsume = Math.Min(amountAvailable, MaxDepositRate);
             nutrientStore.removeResource(amountToConsume);
             closestTile.addNutrient(nutrient, amountToConsume);
         }

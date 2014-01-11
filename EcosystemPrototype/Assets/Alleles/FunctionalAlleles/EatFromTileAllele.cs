@@ -2,6 +2,7 @@
 using System.Collections.Generic;
 using System.Linq;
 using System.Text;
+using UnityEngine;
 
 namespace Assets.Alleles.FunctionalAlleles
 {
@@ -17,13 +18,14 @@ namespace Assets.Alleles.FunctionalAlleles
         private Tile closestTile;
         private IntegerResourceStore nutrientStore;
 
-        private const string NUTRIENT_STORE = "nutrientstore";
+        private string nutrientStoreGene = "nutrientstore";
 
         void Start()
         {
             closestTile = TileManager.instance.getTileClosestTo(transform.position);
             //TODO specify the nutrient store being fetched properly
-            nutrientStore = ((IntegerResourceStoreAllele)gameObject.GetComponent<Genome>().GetActiveAllele(NUTRIENT_STORE)).Store;
+            //nutrientStoreGene += Genome.GENE_DELIMITER + nutrient.ToString();
+            nutrientStore = ((IntegerResourceStoreAllele)gameObject.GetComponent<Genome>().GetActiveAllele(nutrientStoreGene)).Store;
         }
 
         void Update()
@@ -37,9 +39,12 @@ namespace Assets.Alleles.FunctionalAlleles
             int amountAvailable = closestTile.getNutrientDeposit(nutrient).Store.Amount;
             int spaceAvailable = nutrientStore.RemainingSpace;
 
-            int amountToConsume = Math.Max(amountAvailable, Math.Max(spaceAvailable, MaxConsumptionRate));
-            closestTile.removeNutrient(nutrient, amountToConsume);
-            nutrientStore.addResource(amountToConsume);
+            int amountToConsume = Mathf.Min(amountAvailable, spaceAvailable, MaxConsumptionRate);
+            if (new System.Random().Next(100) < 10)
+            {
+                closestTile.removeNutrient(nutrient, amountToConsume);
+                nutrientStore.addResource(amountToConsume);
+            }
         }
     }
 }

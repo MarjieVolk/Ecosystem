@@ -12,7 +12,7 @@ namespace Assets.Alleles.FunctionalAlleles
         [GeneticallyInheritable]
         public int Capacity, InitialAmount;
 
-        void Start()
+        void Awake()
         {
             Store = new IntegerResourceStore(Capacity, InitialAmount);
         }
