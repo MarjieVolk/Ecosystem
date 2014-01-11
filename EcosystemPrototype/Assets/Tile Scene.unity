@@ -223,6 +223,7 @@ GameObject:
   - 114: {fileID: 310973690}
   - 114: {fileID: 310973689}
   - 114: {fileID: 310973691}
+  - 114: {fileID: 310973692}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -257,7 +258,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: b772d19ee1daf7a4aa7c332fe8bc1015, type: 2}
+  - {fileID: 2100000, guid: 3186f38ca67e7441e8299da2e169f9f9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -369,6 +370,19 @@ MonoBehaviour:
   gene: energystore
   Capacity: 10000
   InitialAmount: 5
+--- !u!114 &310973692
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 310973681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dcec0aae688aaa4cb0c1a33470e12bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: 
+  Color: {fileID: 2100000, guid: b772d19ee1daf7a4aa7c332fe8bc1015, type: 2}
 --- !u!1 &575575669
 GameObject:
   m_ObjectHideFlags: 0
