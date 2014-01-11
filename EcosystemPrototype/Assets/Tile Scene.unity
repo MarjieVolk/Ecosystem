@@ -306,7 +306,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44ee610cd784a2439f42a285f758aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gene: nutrientstore
+  gene: nutrientstore.Sugar
   Capacity: 100
   InitialAmount: 0
 --- !u!114 &310973688
@@ -355,8 +355,6 @@ MonoBehaviour:
   EnergyInput: 1
   EnergyOutput: 5
   MaxDigestionRate: 1
-  inputNutrientStore: nutrientstore
-  outputNutrientStore: nutrientstore.Rum
 --- !u!114 &310973691
 MonoBehaviour:
   m_ObjectHideFlags: 0
