@@ -101,7 +101,7 @@ public class Genome : MonoBehaviour {
         foreach (FieldInfo field in allele.GetFields())
         {
             InheritSeparatelyAttribute[] attributes = (InheritSeparatelyAttribute[])field.GetCustomAttributes(typeof(InheritSeparatelyAttribute), false);
-            if (attributes.Length > 2) throw new InvalidAttributeException();
+            if (attributes.Length > 1) throw new InvalidAttributeException();
             foreach (InheritSeparatelyAttribute attribute in attributes)
             {
                 string inheritanceGroup = attribute.InheritanceGroup;
