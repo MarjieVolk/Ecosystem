@@ -622,6 +622,10 @@ Prefab:
       propertyPath: m_LocalRotation.w
       value: 1
       objectReference: {fileID: 0}
+    - target: {fileID: 11400028, guid: 9f9a9a6d2f3880a43b3201609810f852, type: 2}
+      propertyPath: gene
+      value: nutrientstore.Sugar
+      objectReference: {fileID: 0}
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 100100000, guid: 9f9a9a6d2f3880a43b3201609810f852, type: 2}
   m_RootGameObject: {fileID: 1594296452}
@@ -1139,7 +1143,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44ee610cd784a2439f42a285f758aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gene: nutrientstore
+  gene: nutrientstore.Sugar
   Capacity: 100
   InitialAmount: 0
 --- !u!114 &1594296462
