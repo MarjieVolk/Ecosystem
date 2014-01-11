@@ -1,14 +1,336 @@
 %YAML 1.1
 %TAG !u! tag:unity3d.com,2011:
+--- !u!1 &100000
+GameObject:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  serializedVersion: 4
+  m_Component:
+  - 4: {fileID: 400000}
+  - 33: {fileID: 3300000}
+  - 23: {fileID: 2300000}
+  - 114: {fileID: 11400002}
+  - 114: {fileID: 11400004}
+  - 114: {fileID: 11400000}
+  - 114: {fileID: 11400006}
+  - 114: {fileID: 11400010}
+  - 114: {fileID: 11400008}
+  - 114: {fileID: 11400012}
+  - 114: {fileID: 11400014}
+  - 114: {fileID: 11400028}
+  - 114: {fileID: 11400026}
+  - 114: {fileID: 11400024}
+  - 114: {fileID: 11400022}
+  - 114: {fileID: 11400020}
+  - 114: {fileID: 11400018}
+  - 114: {fileID: 11400016}
+  - 114: {fileID: 11400032}
+  - 114: {fileID: 11400030}
+  m_Layer: 0
+  m_Name: Plant
+  m_TagString: Untagged
+  m_Icon: {fileID: 0}
+  m_NavMeshLayer: 0
+  m_StaticEditorFlags: 0
+  m_IsActive: 1
+--- !u!4 &400000
+Transform:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
+  m_LocalPosition: {x: 8.64555645, y: 0, z: 4.18359184}
+  m_LocalScale: {x: 1, y: 7, z: 1}
+  m_Children: []
+  m_Father: {fileID: 0}
+--- !u!23 &2300000
+Renderer:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_CastShadows: 1
+  m_ReceiveShadows: 1
+  m_LightmapIndex: 255
+  m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
+  m_Materials:
+  - {fileID: 2100000, guid: 3186f38ca67e7441e8299da2e169f9f9, type: 2}
+  m_SubsetIndices: 
+  m_StaticBatchRoot: {fileID: 0}
+  m_UseLightProbes: 0
+  m_LightProbeAnchor: {fileID: 0}
+  m_ScaleInLightmap: 1
+  m_SortingLayer: 0
+  m_SortingOrder: 0
+  m_SortingLayerID: 0
+--- !u!33 &3300000
+MeshFilter:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Mesh: {fileID: 10208, guid: 0000000000000000e000000000000000, type: 0}
+--- !u!114 &11400000
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa5bc27ff29f9c4da268ea9ea0f4773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: consumption
+  CanMove: 0
+  nutrient: 0
+  MaxConsumptionRate: 1
+--- !u!114 &11400002
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: fada5f847e7e16c49aaae56e21a5b8c5, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+--- !u!114 &11400004
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44ee610cd784a2439f42a285f758aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: nutrientstore.Sugar
+  Capacity: 100
+  InitialAmount: 0
+--- !u!114 &11400006
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f39128724d0dfb4aa70042f0611c591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: poop
+  CanMove: 0
+  nutrient: 3
+  MaxDepositRate: 1
+--- !u!114 &11400008
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44ee610cd784a2439f42a285f758aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: nutrientstore.Rum
+  Capacity: 100
+  InitialAmount: 0
+--- !u!114 &11400010
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9513819e194fbd43b14d7f5d6d1da63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: digest
+  Input: 0
+  Output: 3
+  EnergyInput: 1
+  EnergyOutput: 5
+  MaxDigestionRate: 1
+--- !u!114 &11400012
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 055a1cbd0ffad014288a0e23cdbd40df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: energystore
+  Capacity: 10000
+  InitialAmount: 5
+--- !u!114 &11400014
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2d906654b3e5b4c88e32227d86bf57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: sex
+  energyStore: energystore
+  maxPollenTravelDistance: 2
+  maxSeedTravelDistance: 2
+  pollenEnergyCost: 10
+  seedEnergyCost: 30
+--- !u!114 &11400016
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 3d2d906654b3e5b4c88e32227d86bf57, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: sex
+  energyStore: energystore
+  maxPollenTravelDistance: 2
+  maxSeedTravelDistance: 2
+  pollenEnergyCost: 10
+  seedEnergyCost: 30
+--- !u!114 &11400018
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 055a1cbd0ffad014288a0e23cdbd40df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: energystore
+  Capacity: 10000
+  InitialAmount: 5
+--- !u!114 &11400020
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44ee610cd784a2439f42a285f758aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: nutrientstore.Rum
+  Capacity: 100
+  InitialAmount: 0
+--- !u!114 &11400022
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9513819e194fbd43b14d7f5d6d1da63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: digest
+  Input: 0
+  Output: 3
+  EnergyInput: 1
+  EnergyOutput: 5
+  MaxDigestionRate: 1
+--- !u!114 &11400024
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f39128724d0dfb4aa70042f0611c591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: poop
+  CanMove: 0
+  nutrient: 3
+  MaxDepositRate: 1
+--- !u!114 &11400026
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa5bc27ff29f9c4da268ea9ea0f4773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: consumption
+  CanMove: 0
+  nutrient: 0
+  MaxConsumptionRate: 1
+--- !u!114 &11400028
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44ee610cd784a2439f42a285f758aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: nutrientstore
+  Capacity: 100
+  InitialAmount: 0
+--- !u!114 &11400030
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dcec0aae688aaa4cb0c1a33470e12bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: color
+  Color: {fileID: 2100000, guid: 2c16ff5758528d748b48130ea39b1b56, type: 2}
+--- !u!114 &11400032
+MonoBehaviour:
+  m_ObjectHideFlags: 1
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 100100000}
+  m_GameObject: {fileID: 100000}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 4dcec0aae688aaa4cb0c1a33470e12bd, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: color
+  Color: {fileID: 2100000, guid: b772d19ee1daf7a4aa7c332fe8bc1015, type: 2}
 --- !u!1001 &100100000
 Prefab:
-  m_ObjectHideFlags: 0
+  m_ObjectHideFlags: 1
   serializedVersion: 2
   m_Modification:
     m_TransformParent: {fileID: 0}
     m_Modifications: []
     m_RemovedComponents: []
   m_ParentPrefab: {fileID: 0}
-  m_RootGameObject: {fileID: 0}
+  m_RootGameObject: {fileID: 100000}
   m_IsPrefabParent: 1
   m_IsExploded: 1
