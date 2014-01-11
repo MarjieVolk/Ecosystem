@@ -17,12 +17,12 @@ namespace Assets.Alleles.FunctionalAlleles
         private Tile closestTile;
         private IntegerResourceStore nutrientStore;
 
-        private const string NUTRIENT_STORE = "nutrientstore.Rum";
+        private const string NUTRIENT_STORE = "nutrientstore";
 
         void Start()
         {
             closestTile = TileManager.instance.getTileClosestTo(transform.position);
-            nutrientStore = ((IntegerResourceStoreAllele)gameObject.GetComponent<Genome>().GetActiveAllele(NUTRIENT_STORE)).Store;
+            nutrientStore = ((IntegerResourceStoreAllele)gameObject.GetComponent<Genome>().GetActiveAllele(NUTRIENT_STORE + Genome.GENE_DELIMITER + nutrient)).Store;
         }
 
         void Update()

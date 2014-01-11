@@ -23,9 +23,7 @@ namespace Assets.Alleles.FunctionalAlleles
         void Start()
         {
             closestTile = TileManager.instance.getTileClosestTo(transform.position);
-            //TODO specify the nutrient store being fetched properly
-            //nutrientStoreGene += Genome.GENE_DELIMITER + nutrient.ToString();
-            nutrientStore = ((IntegerResourceStoreAllele)gameObject.GetComponent<Genome>().GetActiveAllele(nutrientStoreGene)).Store;
+            nutrientStore = ((IntegerResourceStoreAllele)gameObject.GetComponent<Genome>().GetActiveAllele(nutrientStoreGene + Genome.GENE_DELIMITER + nutrient)).Store;
         }
 
         void Update()
