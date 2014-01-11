@@ -78,7 +78,12 @@ public class TileManager : MonoBehaviour {
 	}
 
 	void OnGUI() {
-
+		if (highlighted != null) {
+			GUI.Label(new Rect(0, 0, 5000, 50000), "Sugar: " + highlighted.nutrientAmount(Nutrient.Sugar) +
+			          "\nRum: " + highlighted.nutrientAmount(Nutrient.Rum) +
+			          "\nGold: " + highlighted.nutrientAmount(Nutrient.Gold) +
+			          "\nOxygen: " + highlighted.nutrientAmount(Nutrient.Oxygen));
+		}
 	}
 
 	public Tile[] getTilesInRange(Vector3 position, int radius) {

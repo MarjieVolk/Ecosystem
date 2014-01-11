@@ -219,6 +219,10 @@ GameObject:
   - 114: {fileID: 310973686}
   - 114: {fileID: 310973687}
   - 114: {fileID: 310973682}
+  - 114: {fileID: 310973688}
+  - 114: {fileID: 310973690}
+  - 114: {fileID: 310973689}
+  - 114: {fileID: 310973691}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -305,6 +309,68 @@ MonoBehaviour:
   gene: nutrientstore
   Capacity: 100
   InitialAmount: 0
+--- !u!114 &310973688
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 310973681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 5f39128724d0dfb4aa70042f0611c591, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: poop
+  CanMove: 0
+  nutrient: 3
+  MaxDepositRate: 1
+--- !u!114 &310973689
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 310973681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44ee610cd784a2439f42a285f758aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: nutrientstore.Rum
+  Capacity: 100
+  InitialAmount: 0
+--- !u!114 &310973690
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 310973681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: d9513819e194fbd43b14d7f5d6d1da63, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: digest
+  Input: 0
+  Output: 3
+  EnergyInput: 1
+  EnergyOutput: 5
+  MaxDigestionRate: 1
+  inputNutrientStore: nutrientstore
+  outputNutrientStore: nutrientstore.Rum
+--- !u!114 &310973691
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 310973681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 055a1cbd0ffad014288a0e23cdbd40df, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: energystore
+  Capacity: 10000
+  InitialAmount: 5
 --- !u!1 &575575669
 GameObject:
   m_ObjectHideFlags: 0

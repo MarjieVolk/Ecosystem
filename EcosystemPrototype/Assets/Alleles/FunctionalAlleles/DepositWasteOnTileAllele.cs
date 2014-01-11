@@ -17,7 +17,7 @@ namespace Assets.Alleles.FunctionalAlleles
         private Tile closestTile;
         private IntegerResourceStore nutrientStore;
 
-        private const string NUTRIENT_STORE = "nutrient_store";
+        private const string NUTRIENT_STORE = "nutrientstore.Rum";
 
         void Start()
         {
