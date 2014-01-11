@@ -160,13 +160,13 @@ public class Genome : MonoBehaviour {
 			Allele alleleOne = halfOne[type];
 			Allele alleleTwo = halfTwo[type];
 
-			alleleOne.setGenome(this);
-			alleleTwo.setGenome(this);
-
-			Allele newOne = (Allele) gameObject.AddComponent(type);
-			alleleOne.clone(newOne);
-			Allele newTwo = (Allele) gameObject.AddComponent(type);
-			alleleTwo.clone(newTwo);
+			Allele newOne = (Allele) gameObject.AddComponent(alleleOne.GetType().Name);
+			newOne.clone(alleleOne);
+			Allele newTwo = (Allele) gameObject.AddComponent(alleleTwo.GetType().Name);
+			newTwo.clone(alleleTwo);
+			
+			newOne.setGenome(this);
+			newTwo.setGenome(this);
 
 			GeneObj gene = new GeneObj(newOne, newTwo);
 			alleles[type] = gene;

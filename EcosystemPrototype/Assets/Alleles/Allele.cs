@@ -3,6 +3,7 @@ using System.Collections;
 using System.Reflection;
 using System;
 using Assets.Alleles;
+using Assets;
 
 namespace Assets.Alleles
 {
@@ -19,6 +20,7 @@ namespace Assets.Alleles
             }
         }
 
+		[GeneticallyInheritable]
         public string gene;
 
         protected Genome genome;

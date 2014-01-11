@@ -17,59 +17,68 @@ using Assets.Alleles.FunctionalAlleles;
 
 public class ReproductionAllele : Allele
 {
+	[GeneticallyInheritable]
 	public String energyStore;
-	
+
+	[GeneticallyInheritable]
 	public int maxPollenTravelDistance;
+
+	[GeneticallyInheritable]
 	public int maxSeedTravelDistance;
 
+	[GeneticallyInheritable]
 	public double pollenEnergyCost;
+
+	[GeneticallyInheritable]
 	public double seedEnergyCost;
 
 	private System.Random gen;
 	private List<Dictionary<string, Allele>> pollen;
 	private DoubleResourceStore energy;
-	//private Genome genome;
+	private Genome myGenome;
 
 	void Start () {
 		pollen = new List<Dictionary<string, Allele>>();
 		gen = new System.Random();
 
-		//genome = this.gameObject.GetComponent<Genome>();
-		energy = ((DoubleResourceStoreAllele) genome.GetActiveAllele(energyStore)).Store;
+		myGenome = this.gameObject.GetComponent<Genome>();
+		energy = ((DoubleResourceStoreAllele) myGenome.GetActiveAllele(energyStore)).Store;
 	}
 
 	void Update() {
-		if (pollen.Count > 0 && energy.Amount >= seedEnergyCost) {
-			//make seed
-			Tile[] possibleTiles = TileManager.instance.getTilesInRange(transform.position, maxSeedTravelDistance);
-			Tile t = possibleTiles[gen.Next(possibleTiles.GetLength(0))];
+		if (!IsActive) return;
 
-			if (!t.hasPlant()) {
-				//TODO: make plant
-				GameObject child = GameObject.CreatePrimitive(PrimitiveType.Capsule);
-				child.transform.position = t.transform.position;
-				child.transform.localScale = this.transform.localScale;
-				child.renderer.material = this.renderer.material;
+		if (pollen.Count > 0) {
+			if (energy.Amount >= seedEnergyCost * 2) {
+				//make seed
+				Tile[] possibleTiles = TileManager.instance.getTilesInRange(transform.position, maxPollenTravelDistance);
+				Tile t = possibleTiles[gen.Next(possibleTiles.GetLength(0))];
 
-				Dictionary<string, Allele> pieceOfPollen = pollen[0];
-				pollen.Remove(pieceOfPollen);
+				if (!t.hasPlant()) {
+					//TODO: make plant
+					GameObject child = GameObject.CreatePrimitive(PrimitiveType.Capsule);
+					child.transform.position = t.transform.position;
+					child.transform.localScale = this.transform.localScale;
+					child.renderer.material = this.renderer.material;
 
-				Genome childGenome = (Genome) child.AddComponent("Genome");
-				childGenome.init(pieceOfPollen, genome.getHalfGenome());
+					Dictionary<string, Allele> pieceOfPollen = pollen[0];
+					pollen.Remove(pieceOfPollen);
 
-				t.Plant = child;
+					Genome childGenome = (Genome) child.AddComponent("Genome");
+					childGenome.init(pieceOfPollen, myGenome.getHalfGenome());
+				}
+
+				energy.removeResource(seedEnergyCost);
 			}
 
-			energy.removeResource(seedEnergyCost);
-
-		} else if (energy.Amount >= pollenEnergyCost) {
+		} else if (energy.Amount >= pollenEnergyCost * 2) {
 			//make pollen
 			Tile[] possibleTiles = TileManager.instance.getTilesInRange(transform.position, maxSeedTravelDistance);
 			Tile t = possibleTiles[gen.Next(possibleTiles.GetLength(0))];
 
 			if (t.hasPlant()) {
 				ReproductionAllele other = (ReproductionAllele) t.Plant.GetComponent<Genome>().GetActiveAllele(this.gene);
-				other.getPollen(genome.getHalfGenome());
+				other.getPollen(myGenome.getHalfGenome());
 			}
 
 			energy.removeResource(pollenEnergyCost);
