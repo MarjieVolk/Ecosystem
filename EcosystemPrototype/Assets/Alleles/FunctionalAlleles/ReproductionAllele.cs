@@ -28,13 +28,13 @@ public class ReproductionAllele : Allele
 	private System.Random gen;
 	private List<Dictionary<string, Allele>> pollen;
 	private DoubleResourceStore energy;
-	private Genome genome;
+	//private Genome genome;
 
 	void Start () {
 		pollen = new List<Dictionary<string, Allele>>();
 		gen = new System.Random();
 
-		genome = this.gameObject.GetComponent<Genome>();
+		//genome = this.gameObject.GetComponent<Genome>();
 		energy = ((DoubleResourceStoreAllele) genome.GetActiveAllele(energyStore)).Store;
 	}
 

@@ -41,7 +41,7 @@ Transform:
   m_PrefabInternal: {fileID: 100100000}
   m_GameObject: {fileID: 100000}
   m_LocalRotation: {x: 0, y: 0, z: 0, w: 1}
-  m_LocalPosition: {x: 8.64555645, y: 0, z: 4.18359184}
+  m_LocalPosition: {x: -6.15616035, y: -6.30014462e-18, z: 2.83733273}
   m_LocalScale: {x: 1, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
@@ -293,7 +293,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44ee610cd784a2439f42a285f758aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gene: nutrientstore
+  gene: nutrientstore.Sugar
   Capacity: 100
   InitialAmount: 0
 --- !u!114 &11400030

@@ -21,7 +21,7 @@ namespace Assets.Alleles
 
         public string gene;
 
-        private Genome genome;
+        protected Genome genome;
         private bool _isActive;
 
         // Use this for initialization
