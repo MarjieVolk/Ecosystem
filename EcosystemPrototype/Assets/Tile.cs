@@ -3,7 +3,8 @@ using System.Collections;
 
 public class Tile : MonoBehaviour {
 
-	private GameObject plant;
+	public GameObject Plant { get; set; }
+
 	public int i;
 	public int j;
 
@@ -54,10 +55,6 @@ public class Tile : MonoBehaviour {
 	}
 
 	public bool hasPlant() {
-		return plant != null;
-	}
-
-	public void setPlant(GameObject p) {
-		plant = p;
+		return Plant != null;
 	}
 }

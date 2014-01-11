@@ -145,9 +145,9 @@ public class Genome : MonoBehaviour {
             List<Allele> geneAlleles = temp[gene];
             if (geneAlleles.Count != 2)
             {
-                //throw new UnityException("There must be exactly 2 alleles corresponding to each gene!");
+                throw new UnityException("There must be exactly 2 alleles corresponding to each gene!");
             }
-            alleles[gene] = new GeneObj(geneAlleles[0], null);
+            alleles[gene] = new GeneObj(geneAlleles[0], geneAlleles[1]);
         }
     }
 
@@ -163,7 +163,12 @@ public class Genome : MonoBehaviour {
 			alleleOne.setGenome(this);
 			alleleTwo.setGenome(this);
 
-			GeneObj gene = new GeneObj(alleleOne, alleleTwo);
+			Allele newOne = (Allele) gameObject.AddComponent(type);
+			alleleOne.clone(newOne);
+			Allele newTwo = (Allele) gameObject.AddComponent(type);
+			alleleTwo.clone(newTwo);
+
+			GeneObj gene = new GeneObj(newOne, newTwo);
 			alleles[type] = gene;
 		}
 	}
@@ -196,7 +201,7 @@ public class Genome : MonoBehaviour {
 			active = one;
 			inactive = two;
 			one.IsActive = true;
-			//two.IsActive = false;
+			two.IsActive = false;
 		}
 
 		public Allele getRandom() {
