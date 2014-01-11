@@ -265,7 +265,7 @@ Renderer:
   m_LightmapIndex: 255
   m_LightmapTilingOffset: {x: 1, y: 1, z: 0, w: 0}
   m_Materials:
-  - {fileID: 2100000, guid: b772d19ee1daf7a4aa7c332fe8bc1015, type: 2}
+  - {fileID: 2100000, guid: 3186f38ca67e7441e8299da2e169f9f9, type: 2}
   m_SubsetIndices: 
   m_StaticBatchRoot: {fileID: 0}
   m_UseLightProbes: 0
@@ -314,7 +314,7 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: e44ee610cd784a2439f42a285f758aa1, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
-  gene: nutrientstore
+  gene: nutrientstore.Sugar
   Capacity: 100
   InitialAmount: 0
 --- !u!114 &310973688
@@ -363,8 +363,7 @@ MonoBehaviour:
   EnergyInput: 1
   EnergyOutput: 5
   MaxDigestionRate: 1
-  inputNutrientStore: nutrientstore
-  outputNutrientStore: nutrientstore.Rum
+
 --- !u!114 &310973691
 MonoBehaviour:
   m_ObjectHideFlags: 0
