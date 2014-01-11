@@ -66,6 +66,8 @@ public class ReproductionAllele : Allele
 
 					Genome childGenome = (Genome) child.AddComponent("Genome");
 					childGenome.init(pieceOfPollen, myGenome.getHalfGenome());
+
+					t.Plant = child;
 				}
 
 				energy.removeResource(seedEnergyCost);
@@ -86,7 +88,12 @@ public class ReproductionAllele : Allele
 	}
 
 	public void getPollen(Dictionary<string, Allele> halfGenome) {
-		pollen.Add(halfGenome);
+		// When a new child plant gets placed on a tile, its Start method doesn't get called until the end of the Update round
+		// in which is was created.  Therefore other plants can attempt to pollinate it before "pollen" gets initialized.
+		// This is acceptable because if the plant wasn't there, the pollen would get bought and not used anyway
+		if (pollen != null) {
+			pollen.Add(halfGenome);
+		}
 	}
 }
 
