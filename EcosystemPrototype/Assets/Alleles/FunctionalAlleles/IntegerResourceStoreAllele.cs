@@ -10,11 +10,19 @@ namespace Assets.Alleles.FunctionalAlleles
         public IntegerResourceStore Store { get; private set; }
 
         [GeneticallyInheritable]
-        public int Capacity, InitialAmount;
+        public int Capacity;
+
+		[GeneticallyInheritable]
+		public int InitialAmount;
 
         void Awake()
         {
             Store = new IntegerResourceStore(Capacity, InitialAmount);
-        }
+		}
+		
+		void Start() {
+			Store.Capacity = Capacity;
+			Store.Amount = InitialAmount;
+		}
     }
 }

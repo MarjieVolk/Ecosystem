@@ -16,5 +16,10 @@ namespace Assets.Alleles.FunctionalAlleles
         {
             Store = new DoubleResourceStore(Capacity, InitialAmount);
         }
+
+		void Start() {
+			Store.Capacity = Capacity;
+			Store.Amount = InitialAmount;
+		}
     }
 }

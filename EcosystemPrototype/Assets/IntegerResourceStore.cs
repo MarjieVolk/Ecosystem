@@ -7,8 +7,8 @@ namespace Assets
 {
     public class IntegerResourceStore
     {
-        public int Capacity { get; private set; }
-        public int Amount { get; private set; }
+        public int Capacity { get; set; }
+        public int Amount { get; set; }
         public int RemainingSpace { get { return Capacity - Amount; } }
 
         public IntegerResourceStore(int capacity, int initalAmount)
