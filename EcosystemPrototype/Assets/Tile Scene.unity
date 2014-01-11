@@ -217,6 +217,8 @@ GameObject:
   - 33: {fileID: 310973684}
   - 23: {fileID: 310973683}
   - 114: {fileID: 310973686}
+  - 114: {fileID: 310973687}
+  - 114: {fileID: 310973682}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -224,6 +226,21 @@ GameObject:
   m_NavMeshLayer: 0
   m_StaticEditorFlags: 0
   m_IsActive: 1
+--- !u!114 &310973682
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 310973681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: faa5bc27ff29f9c4da268ea9ea0f4773, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: consumption
+  CanMove: 0
+  nutrient: 0
+  MaxConsumptionRate: 1
 --- !u!23 &310973683
 Renderer:
   m_ObjectHideFlags: 0
@@ -274,6 +291,20 @@ MonoBehaviour:
   m_Script: {fileID: 11500000, guid: fada5f847e7e16c49aaae56e21a5b8c5, type: 3}
   m_Name: 
   m_EditorClassIdentifier: 
+--- !u!114 &310973687
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 0}
+  m_PrefabInternal: {fileID: 0}
+  m_GameObject: {fileID: 310973681}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: e44ee610cd784a2439f42a285f758aa1, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: nutrientstore
+  Capacity: 100
+  InitialAmount: 0
 --- !u!1 &575575669
 GameObject:
   m_ObjectHideFlags: 0

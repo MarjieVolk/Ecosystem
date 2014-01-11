@@ -55,7 +55,7 @@ namespace Assets.Alleles.FunctionalAlleles
             int availableEnergy = (int)(energy.Amount / EnergyInput);
             int availableEnergySpace = (int)(energy.RemainingSpace / (EnergyOutput - EnergyInput));
 
-            return Mathf.Max(availableInputs, availableNutrientSpace, availableEnergy, availableEnergySpace);
+            return Mathf.Min(availableInputs, availableNutrientSpace, availableEnergy, availableEnergySpace);
         }
     }
 }
