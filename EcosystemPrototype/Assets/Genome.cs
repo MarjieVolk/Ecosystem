@@ -145,7 +145,7 @@ public class Genome : MonoBehaviour {
             List<Allele> geneAlleles = temp[gene];
             if (geneAlleles.Count != 2)
             {
-                throw new UnityException("There must be exactly 2 alleles corresponding to each gene!");
+                throw new UnityException("There must be exactly 2 alleles corresponding to each gene, but there is only one allele for the gene " + gene);
             }
             alleles[gene] = new GeneObj(geneAlleles[0], geneAlleles[1]);
         }
