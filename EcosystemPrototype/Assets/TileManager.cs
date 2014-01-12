@@ -2,6 +2,8 @@
 using System.Collections;
 using System.Collections.Generic;
 using System;
+using Assets;
+using Assets.Alleles.FunctionalAlleles;
 
 public class TileManager : MonoBehaviour {
 
@@ -79,10 +81,15 @@ public class TileManager : MonoBehaviour {
 
 	void OnGUI() {
 		if (highlighted != null) {
-			GUI.Label(new Rect(0, 0, 5000, 50000), "Sugar: " + highlighted.nutrientAmount(Nutrient.Sugar) +
+			GUI.Label(new Rect(0, 0, 5000, 100), "Sugar: " + highlighted.nutrientAmount(Nutrient.Sugar) +
 			          "\nRum: " + highlighted.nutrientAmount(Nutrient.Rum) +
 			          "\nGold: " + highlighted.nutrientAmount(Nutrient.Gold) +
 			          "\nOxygen: " + highlighted.nutrientAmount(Nutrient.Oxygen));
+            if (highlighted.hasPlant())
+            {
+                DoubleResourceStore store = ((DoubleResourceStoreAllele)highlighted.Plant.GetComponent<Genome>().GetActiveAllele("energystore")).Store;
+                GUI.Label(new Rect(0, 100, 5000, 100), "Energy: " + store.Amount);
+            }
 		}
 	}
 
