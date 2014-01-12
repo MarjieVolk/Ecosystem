@@ -14,11 +14,20 @@ namespace Assets.Alleles.FunctionalAlleles
         public Nutrient nutrient;
         [GeneticallyInheritable]
         public int MaxConsumptionRate;
+        [GeneticallyInheritable]
+        public double ConsumptionProbability;
 
         private Tile closestTile;
         private IntegerResourceStore nutrientStore;
 
         private string nutrientStoreGene = "nutrientstore";
+
+        private System.Random gen;
+
+        public EatFromTileAllele()
+        {
+            gen = new System.Random();
+        }
 
         void Start()
         {
@@ -38,7 +47,7 @@ namespace Assets.Alleles.FunctionalAlleles
             int spaceAvailable = nutrientStore.RemainingSpace;
 
             int amountToConsume = Mathf.Min(amountAvailable, spaceAvailable, MaxConsumptionRate);
-            if (new System.Random().Next(100) < 10)
+            if (gen.NextDouble() < ConsumptionProbability)
             {
                 closestTile.removeNutrient(nutrient, amountToConsume);
                 nutrientStore.addResource(amountToConsume);
