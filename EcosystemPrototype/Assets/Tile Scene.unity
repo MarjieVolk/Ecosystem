@@ -235,6 +235,10 @@ GameObject:
   - 114: {fileID: 137019758}
   - 114: {fileID: 137019757}
   - 114: {fileID: 137019756}
+  - 114: {fileID: 137019779}
+  - 114: {fileID: 137019778}
+  - 114: {fileID: 137019781}
+  - 114: {fileID: 137019780}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -394,6 +398,7 @@ MonoBehaviour:
   CanMove: 0
   nutrient: 0
   MaxConsumptionRate: 1
+  ConsumptionProbability: .10000000149011612
 --- !u!114 &137019766
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -507,6 +512,7 @@ MonoBehaviour:
   CanMove: 0
   nutrient: 0
   MaxConsumptionRate: 1
+  ConsumptionProbability: .10000000149011612
 --- !u!114 &137019773
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -575,6 +581,62 @@ Transform:
   m_LocalScale: {x: 1, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &137019778
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400040, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 157774196}
+  m_GameObject: {fileID: 137019755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03ea75ad5cc9394289e9b97f4a72b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: metabolism
+  MetabolicRate: .0099999997764825821
+--- !u!114 &137019779
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400038, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 157774196}
+  m_GameObject: {fileID: 137019755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03ea75ad5cc9394289e9b97f4a72b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: metabolism
+  MetabolicRate: .0099999997764825821
+--- !u!114 &137019780
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400044, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 157774196}
+  m_GameObject: {fileID: 137019755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f07d7549009feb4e9b9095493b82bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: corpse
+  NutrientStoreGeneBase: nutrientstore
+--- !u!114 &137019781
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400042, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 157774196}
+  m_GameObject: {fileID: 137019755}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f07d7549009feb4e9b9095493b82bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: corpse
+  NutrientStoreGeneBase: nutrientstore
 --- !u!1001 &157774196
 Prefab:
   m_ObjectHideFlags: 0
@@ -1104,6 +1166,10 @@ GameObject:
   - 114: {fileID: 1391428021}
   - 114: {fileID: 1391428042}
   - 114: {fileID: 1391428041}
+  - 114: {fileID: 1391428044}
+  - 114: {fileID: 1391428043}
+  - 114: {fileID: 1391428046}
+  - 114: {fileID: 1391428045}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -1237,6 +1303,7 @@ MonoBehaviour:
   CanMove: 0
   nutrient: 0
   MaxConsumptionRate: 1
+  ConsumptionProbability: .10000000149011612
 --- !u!114 &1391428029
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1350,6 +1417,7 @@ MonoBehaviour:
   CanMove: 0
   nutrient: 0
   MaxConsumptionRate: 1
+  ConsumptionProbability: .10000000149011612
 --- !u!114 &1391428036
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1444,6 +1512,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gene: plant
+--- !u!114 &1391428043
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400040, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 882629032}
+  m_GameObject: {fileID: 1391428020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03ea75ad5cc9394289e9b97f4a72b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: metabolism
+  MetabolicRate: .0099999997764825821
+--- !u!114 &1391428044
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400038, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 882629032}
+  m_GameObject: {fileID: 1391428020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03ea75ad5cc9394289e9b97f4a72b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: metabolism
+  MetabolicRate: .0099999997764825821
+--- !u!114 &1391428045
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400044, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 882629032}
+  m_GameObject: {fileID: 1391428020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f07d7549009feb4e9b9095493b82bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: corpse
+  NutrientStoreGeneBase: nutrientstore
+--- !u!114 &1391428046
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400042, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 882629032}
+  m_GameObject: {fileID: 1391428020}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f07d7549009feb4e9b9095493b82bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: corpse
+  NutrientStoreGeneBase: nutrientstore
 --- !u!1 &1594296452
 GameObject:
   m_ObjectHideFlags: 0
@@ -1473,6 +1597,10 @@ GameObject:
   - 114: {fileID: 1594296453}
   - 114: {fileID: 1594296474}
   - 114: {fileID: 1594296473}
+  - 114: {fileID: 1594296476}
+  - 114: {fileID: 1594296475}
+  - 114: {fileID: 1594296478}
+  - 114: {fileID: 1594296477}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -1606,6 +1734,7 @@ MonoBehaviour:
   CanMove: 0
   nutrient: 0
   MaxConsumptionRate: 1
+  ConsumptionProbability: .10000000149011612
 --- !u!114 &1594296461
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1719,6 +1848,7 @@ MonoBehaviour:
   CanMove: 0
   nutrient: 0
   MaxConsumptionRate: 1
+  ConsumptionProbability: .10000000149011612
 --- !u!114 &1594296468
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -1813,6 +1943,62 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gene: plant
+--- !u!114 &1594296475
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400040, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 1293931726}
+  m_GameObject: {fileID: 1594296452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03ea75ad5cc9394289e9b97f4a72b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: metabolism
+  MetabolicRate: .0099999997764825821
+--- !u!114 &1594296476
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400038, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 1293931726}
+  m_GameObject: {fileID: 1594296452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03ea75ad5cc9394289e9b97f4a72b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: metabolism
+  MetabolicRate: .0099999997764825821
+--- !u!114 &1594296477
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400044, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 1293931726}
+  m_GameObject: {fileID: 1594296452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f07d7549009feb4e9b9095493b82bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: corpse
+  NutrientStoreGeneBase: nutrientstore
+--- !u!114 &1594296478
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400042, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 1293931726}
+  m_GameObject: {fileID: 1594296452}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f07d7549009feb4e9b9095493b82bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: corpse
+  NutrientStoreGeneBase: nutrientstore
 --- !u!1 &2088117935
 GameObject:
   m_ObjectHideFlags: 0
@@ -1842,6 +2028,10 @@ GameObject:
   - 114: {fileID: 2088117938}
   - 114: {fileID: 2088117937}
   - 114: {fileID: 2088117936}
+  - 114: {fileID: 2088117959}
+  - 114: {fileID: 2088117958}
+  - 114: {fileID: 2088117961}
+  - 114: {fileID: 2088117960}
   m_Layer: 0
   m_Name: Plant
   m_TagString: Untagged
@@ -2001,6 +2191,7 @@ MonoBehaviour:
   CanMove: 0
   nutrient: 0
   MaxConsumptionRate: 1
+  ConsumptionProbability: .10000000149011612
 --- !u!114 &2088117946
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2114,6 +2305,7 @@ MonoBehaviour:
   CanMove: 0
   nutrient: 0
   MaxConsumptionRate: 1
+  ConsumptionProbability: .10000000149011612
 --- !u!114 &2088117953
 MonoBehaviour:
   m_ObjectHideFlags: 0
@@ -2182,3 +2374,59 @@ Transform:
   m_LocalScale: {x: 1, y: 7, z: 1}
   m_Children: []
   m_Father: {fileID: 0}
+--- !u!114 &2088117958
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400040, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 1141378676}
+  m_GameObject: {fileID: 2088117935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03ea75ad5cc9394289e9b97f4a72b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: metabolism
+  MetabolicRate: .0099999997764825821
+--- !u!114 &2088117959
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400038, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 1141378676}
+  m_GameObject: {fileID: 2088117935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: c03ea75ad5cc9394289e9b97f4a72b4f, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: metabolism
+  MetabolicRate: .0099999997764825821
+--- !u!114 &2088117960
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400044, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 1141378676}
+  m_GameObject: {fileID: 2088117935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f07d7549009feb4e9b9095493b82bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: corpse
+  NutrientStoreGeneBase: nutrientstore
+--- !u!114 &2088117961
+MonoBehaviour:
+  m_ObjectHideFlags: 0
+  m_PrefabParentObject: {fileID: 11400042, guid: 9f9a9a6d2f3880a43b3201609810f852,
+    type: 2}
+  m_PrefabInternal: {fileID: 1141378676}
+  m_GameObject: {fileID: 2088117935}
+  m_Enabled: 1
+  m_EditorHideFlags: 0
+  m_Script: {fileID: 11500000, guid: 8f07d7549009feb4e9b9095493b82bbf, type: 3}
+  m_Name: 
+  m_EditorClassIdentifier: 
+  gene: corpse
+  NutrientStoreGeneBase: nutrientstore
