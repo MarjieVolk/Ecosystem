@@ -8,6 +8,7 @@ namespace Assets.Alleles
 {
     public class DataAllele : Allele
     {
+        [GeneticallyInheritable]
         public Dictionary<FieldInfo, object> Data;
 
         public DataAllele()
