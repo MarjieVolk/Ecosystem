@@ -19,7 +19,7 @@ public class Genome : MonoBehaviour {
 		alleles = new Dictionary<string, GeneObj>();
 
         registerAlleleComponents();
-        //generateDataAlleles();
+        generateDataAlleles();
         //generateNumericDataAlleles();
 	}
 
@@ -29,7 +29,8 @@ public class Genome : MonoBehaviour {
         // These data alleles should be in the same half-genome as their parent allele!!
 
         //for each gene in the genome
-        foreach (string gene in alleles.Keys)
+        string[] originalGenes = alleles.Keys.ToArray<string>();
+        foreach (string gene in originalGenes)
         {
             GeneObj genotype = alleles[gene];
 
@@ -81,7 +82,7 @@ public class Genome : MonoBehaviour {
         {
             //create a data allele
             DataAllele dataAllele = gameObject.AddComponent<DataAllele>();
-            dataAllele.gene = functionalAllele.gene + GENE_DELIMITER + inheritanceGroup;
+            dataAllele.gene = nameDataAllele(functionalAllele, inheritanceGroup);
 
             //for each field in the inheritance group
             foreach (FieldInfo field in fields[inheritanceGroup])
@@ -90,9 +91,14 @@ public class Genome : MonoBehaviour {
                 dataAllele.Data[field] = field.GetValue(functionalAllele);
             }
 
-            dataAlleles[inheritanceGroup] = dataAllele;
+            dataAlleles[dataAllele.gene] = dataAllele;
         }
         return dataAlleles;
+    }
+
+    private static string nameDataAllele(Allele functionalAllele, string inheritanceGroup)
+    {
+        return functionalAllele.gene + GENE_DELIMITER + inheritanceGroup;
     }
 
     private static Dictionary<string, List<FieldInfo>> collectFieldsByInheritanceGroup(Type allele)
@@ -156,9 +162,17 @@ public class Genome : MonoBehaviour {
 	}
 
 	public void init(Dictionary<string, Allele> halfOne, Dictionary<string, Allele> halfTwo) {
-		foreach (string type in halfOne.Keys) {
-			Allele alleleOne = halfOne[type];
-			Allele alleleTwo = halfTwo[type];
+        //for each gene in either organism's genotype
+		foreach (string type in Enumerable.Union<string>(halfOne.Keys, halfTwo.Keys)) {
+            //fetch the alleles, if any, for that gene for each organism
+            Allele alleleOne = null, alleleTwo = null;
+            if (halfOne.ContainsKey(type))
+                alleleOne = halfOne[type];
+			if(halfTwo.ContainsKey(type))
+                alleleTwo = halfTwo[type];
+
+            //generate default alleles for genes with only one allele
+            GenerateDefaultAlleles(ref alleleOne, ref alleleTwo);
 
 			Allele newOne = (Allele) gameObject.AddComponent(alleleOne.GetType().Name);
 			newOne.clone(alleleOne);
@@ -171,7 +185,51 @@ public class Genome : MonoBehaviour {
 			GeneObj gene = new GeneObj(newOne, newTwo);
 			alleles[type] = gene;
 		}
+
+        populateSeparatelyInheritedFields();
 	}
+
+    /// <summary>
+    /// Take data from the data alleles and inject them into the functional alleles they belong to.
+    /// </summary>
+    private void populateSeparatelyInheritedFields()
+    {
+        //for each gene (that might be a functional gene with corresponding data genes)
+        foreach (string gene in alleles.Keys)
+        {
+            GeneObj genotype = alleles[gene];
+            Allele active = genotype.active;
+            Allele inactive = genotype.inactive;
+
+            //for each field in the active allele (the value of which might be inherited separately in a data allele)
+            foreach (FieldInfo field in active.GetType().GetFields())
+            {
+                InheritSeparatelyAttribute[] attributes = (InheritSeparatelyAttribute[])field.GetCustomAttributes(typeof(InheritSeparatelyAttribute), false);
+                //if this field is in fact inherited separately
+                if (attributes.Length == 1)
+                {
+                    //inject the value in the data allele into the field
+                    string dataAlleleGene = nameDataAllele(active, attributes[0].InheritanceGroup);
+                    DataAllele data = (DataAllele)alleles[dataAlleleGene].active;
+                    field.SetValue(active, data.Data[field]);
+                }
+            }
+        }
+    }
+
+    private static void GenerateDefaultAlleles(ref Allele alleleOne, ref Allele alleleTwo)
+    {
+        if (alleleOne == null)
+        {
+            alleleOne = new DataAllele();
+            ((DataAllele)alleleOne).GenerateDefaultCopy((DataAllele)alleleTwo);
+        }
+        if (alleleTwo == null)
+        {
+            alleleTwo = new DataAllele();
+            ((DataAllele)alleleTwo).GenerateDefaultCopy((DataAllele)alleleOne);
+        }
+    }
 
 	public Dictionary<string, Allele> getHalfGenome() {
 		Dictionary<string, Allele> ret = new Dictionary<string, Allele>();
