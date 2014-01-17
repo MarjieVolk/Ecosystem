@@ -57,7 +57,8 @@ public class Genome : MonoBehaviour {
             if (!target.ContainsKey(dataGene))
             {
                 DataAllele defaultCopy = gameObject.AddComponent<DataAllele>();
-                source[dataGene].GenerateDefaultCopy(defaultCopy);
+                defaultCopy.CopyFrom(source[dataGene]);
+                defaultCopy.ResetToDefaultValues();
                 target[dataGene] = defaultCopy;
             }
         }
@@ -217,17 +218,19 @@ public class Genome : MonoBehaviour {
         }
     }
 
-    private static void GenerateDefaultAlleles(ref Allele alleleOne, ref Allele alleleTwo)
+    private void GenerateDefaultAlleles(ref Allele alleleOne, ref Allele alleleTwo)
     {
         if (alleleOne == null)
         {
-            alleleOne = new DataAllele();
-            ((DataAllele)alleleOne).GenerateDefaultCopy((DataAllele)alleleTwo);
+            alleleOne = gameObject.AddComponent<DataAllele>();
+            ((DataAllele)alleleOne).CopyFrom((DataAllele)alleleTwo);
+            ((DataAllele)alleleOne).ResetToDefaultValues();
         }
         if (alleleTwo == null)
         {
-            alleleTwo = new DataAllele();
-            ((DataAllele)alleleTwo).GenerateDefaultCopy((DataAllele)alleleOne);
+            alleleTwo = gameObject.AddComponent<DataAllele>();
+            ((DataAllele)alleleTwo).CopyFrom((DataAllele)alleleOne);
+            ((DataAllele)alleleTwo).ResetToDefaultValues();
         }
     }
 
