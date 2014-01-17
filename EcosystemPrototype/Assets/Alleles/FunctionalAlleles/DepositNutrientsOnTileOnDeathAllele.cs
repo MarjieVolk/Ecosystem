@@ -16,7 +16,6 @@ namespace Assets.Alleles.FunctionalAlleles
 
         public void OnDestroy()
         {
-            Console.WriteLine("dead executed");
             Tile closestTile = TileManager.instance.getTileClosestTo(transform.position);
             foreach (Nutrient nutrient in Enum.GetValues(typeof(Nutrient)))
             {
