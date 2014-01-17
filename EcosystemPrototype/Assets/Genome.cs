@@ -35,8 +35,8 @@ public class Genome : MonoBehaviour {
             GeneObj genotype = alleles[gene];
 
             //generate the data alleles for the active and inactive alleles in that gene
-            Dictionary<string, DataAllele> activeDataAlleles = generateDataAlleles(genotype.active);
-            Dictionary<string, DataAllele> inactiveDataAlleles = generateDataAlleles(genotype.inactive);
+            Dictionary<string, Allele> activeDataAlleles = generateDataAlleles(genotype.active);
+            Dictionary<string, Allele> inactiveDataAlleles = generateDataAlleles(genotype.inactive);
 
             //generate default data alleles where necessary (can occur if genotype.active and genotype.inactive have different types)
             IEnumerable<string> dataGenes = Enumerable.Union<string>(activeDataAlleles.Keys, inactiveDataAlleles.Keys);
@@ -50,16 +50,19 @@ public class Genome : MonoBehaviour {
         }
     }
 
-    private void generateDefaultAlleles(IEnumerable<string> dataGenes, Dictionary<string, DataAllele> target, Dictionary<string, DataAllele> source)
+    private void generateDefaultAlleles(IEnumerable<string> genes, Dictionary<string, Allele> target, Dictionary<string, Allele> source)
     {
-        foreach (string dataGene in dataGenes)
+        foreach (string gene in genes)
         {
-            if (!target.ContainsKey(dataGene))
+            if (!target.ContainsKey(gene))
             {
-                DataAllele defaultCopy = gameObject.AddComponent<DataAllele>();
-                defaultCopy.CopyFrom(source[dataGene]);
-                defaultCopy.ResetToDefaultValues();
-                target[dataGene] = defaultCopy;
+                if(source[gene].GetType().Equals(typeof(DataAllele)))
+                {
+                    DataAllele defaultCopy = gameObject.AddComponent<DataAllele>();
+                    defaultCopy.CopyFrom((DataAllele)source[gene]);
+                    defaultCopy.ResetToDefaultValues();
+                    target[gene] = defaultCopy;
+                }
             }
         }
     }
@@ -71,11 +74,11 @@ public class Genome : MonoBehaviour {
     /// <returns>
     /// The data alleles that collectively store the configuration of functionalAllele, organized by their full gene name.
     /// </returns>
-    private Dictionary<string, DataAllele> generateDataAlleles(Allele functionalAllele)
+    private Dictionary<string, Allele> generateDataAlleles(Allele functionalAllele)
     {
         Type alleleType = functionalAllele.GetType();
 
-        Dictionary<string, DataAllele> dataAlleles = new Dictionary<string, DataAllele>();
+        Dictionary<string, Allele> dataAlleles = new Dictionary<string, Allele>();
 
         //for each inheritance group
         Dictionary<string, List<FieldInfo>> fields = collectFieldsByInheritanceGroup(alleleType);
@@ -163,17 +166,19 @@ public class Genome : MonoBehaviour {
 	}
 
 	public void init(Dictionary<string, Allele> halfOne, Dictionary<string, Allele> halfTwo) {
-        //for each gene in either organism's genotype
-		foreach (string type in Enumerable.Union<string>(halfOne.Keys, halfTwo.Keys)) {
-            //fetch the alleles, if any, for that gene for each organism
-            Allele alleleOne = null, alleleTwo = null;
-            if (halfOne.ContainsKey(type))
-                alleleOne = halfOne[type];
-			if(halfTwo.ContainsKey(type))
-                alleleTwo = halfTwo[type];
+        //copy so they can be mutated freely
+        halfOne = new Dictionary<string, Allele>(halfOne);
+        halfTwo = new Dictionary<string, Allele>(halfTwo);
 
-            //generate default alleles for genes with only one allele
-            GenerateDefaultAlleles(ref alleleOne, ref alleleTwo);
+        IEnumerable<string> allGenes = Enumerable.Union<string>(halfOne.Keys, halfTwo.Keys);
+        generateDefaultAlleles(allGenes, halfOne, halfTwo);
+        generateDefaultAlleles(allGenes, halfTwo, halfOne);
+
+        //for each gene in either organism's genotype
+		foreach (string type in halfOne.Keys) {
+            //fetch the alleles for that gene from each organism
+            Allele alleleOne = halfOne[type];
+            Allele alleleTwo = halfTwo[type];
 
 			Allele newOne = (Allele) gameObject.AddComponent(alleleOne.GetType().Name);
 			newOne.clone(alleleOne);
@@ -215,22 +220,6 @@ public class Genome : MonoBehaviour {
                     field.SetValue(active, data.Data[field]);
                 }
             }
-        }
-    }
-
-    private void GenerateDefaultAlleles(ref Allele alleleOne, ref Allele alleleTwo)
-    {
-        if (alleleOne == null)
-        {
-            alleleOne = gameObject.AddComponent<DataAllele>();
-            ((DataAllele)alleleOne).CopyFrom((DataAllele)alleleTwo);
-            ((DataAllele)alleleOne).ResetToDefaultValues();
-        }
-        if (alleleTwo == null)
-        {
-            alleleTwo = gameObject.AddComponent<DataAllele>();
-            ((DataAllele)alleleTwo).CopyFrom((DataAllele)alleleOne);
-            ((DataAllele)alleleTwo).ResetToDefaultValues();
         }
     }
 
