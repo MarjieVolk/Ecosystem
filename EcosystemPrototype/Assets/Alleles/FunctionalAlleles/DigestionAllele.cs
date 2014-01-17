@@ -17,23 +17,25 @@ namespace Assets.Alleles.FunctionalAlleles
         public double EnergyOutput;
         [GeneticallyInheritable]
         public int MaxDigestionRate;
+        [GeneticallyInheritable]
+        public string EnergyStoreGene;
+        [GeneticallyInheritable]
+        public string NutrientStoreGeneBase;
 
         private IntegerResourceStore inputStore;
         private IntegerResourceStore outputStore;
         private DoubleResourceStore energy;
 
-        private const string ENERGY_STORE = "energystore";
-        private const string NUTRIENT_STORE = "nutrientstore";
 
         // Use this for initialization
         void Start()
         {
             Genome genome = this.gameObject.GetComponent<Genome>();
-            energy = ((DoubleResourceStoreAllele)genome.GetActiveAllele(ENERGY_STORE)).Store;
+            energy = ((DoubleResourceStoreAllele)genome.GetActiveAllele(EnergyStoreGene)).Store;
 
             //TODO look up nutrient storage properly
-            inputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(NUTRIENT_STORE + Genome.GENE_DELIMITER + Input)).Store;
-            outputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(NUTRIENT_STORE + Genome.GENE_DELIMITER + Output)).Store;
+            inputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(NutrientStoreGeneBase + Genome.GENE_DELIMITER + Input)).Store;
+            outputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(NutrientStoreGeneBase + Genome.GENE_DELIMITER + Output)).Store;
         }
 
         // Update is called once per frame

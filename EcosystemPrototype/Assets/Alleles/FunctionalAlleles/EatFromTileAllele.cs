@@ -16,11 +16,11 @@ namespace Assets.Alleles.FunctionalAlleles
         public int MaxConsumptionRate;
         [GeneticallyInheritable]
         public double ConsumptionProbability;
+        [GeneticallyInheritable]
+        public string NutrientStoreGeneBase;
 
         private Tile closestTile;
         private IntegerResourceStore nutrientStore;
-
-        private string nutrientStoreGene = "nutrientstore";
 
         private System.Random gen;
 
@@ -32,7 +32,7 @@ namespace Assets.Alleles.FunctionalAlleles
         void Start()
         {
             closestTile = TileManager.instance.getTileClosestTo(transform.position);
-            nutrientStore = ((IntegerResourceStoreAllele)gameObject.GetComponent<Genome>().GetActiveAllele(nutrientStoreGene + Genome.GENE_DELIMITER + nutrient)).Store;
+            nutrientStore = ((IntegerResourceStoreAllele)gameObject.GetComponent<Genome>().GetActiveAllele(NutrientStoreGeneBase + Genome.GENE_DELIMITER + nutrient)).Store;
         }
 
         void Update()

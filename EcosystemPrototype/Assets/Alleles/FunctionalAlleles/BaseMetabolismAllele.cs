@@ -9,15 +9,16 @@ namespace Assets.Alleles.FunctionalAlleles
     {
         [GeneticallyInheritable]
         public double MetabolicRate;
+        [GeneticallyInheritable]
+        public string EnergyStoreGene;
 
         private DoubleResourceStore energy; 
 
-        private const string ENERGY_STORE = "energystore";
 
         public void Start()
         {
             Genome genome = this.gameObject.GetComponent<Genome>();
-            energy = ((DoubleResourceStoreAllele)genome.GetActiveAllele(ENERGY_STORE)).Store;
+            energy = ((DoubleResourceStoreAllele)genome.GetActiveAllele(EnergyStoreGene)).Store;
         }
 
         public void Update()

@@ -18,7 +18,7 @@ using Assets.Alleles.FunctionalAlleles;
 public class ReproductionAllele : Allele
 {
 	[GeneticallyInheritable]
-	public String energyStore;
+	public String EnergyStoreGene;
 
 	[GeneticallyInheritable]
 	public int maxPollenTravelDistance;
@@ -42,7 +42,7 @@ public class ReproductionAllele : Allele
 		gen = new System.Random();
 
 		myGenome = this.gameObject.GetComponent<Genome>();
-		energy = ((DoubleResourceStoreAllele) myGenome.GetActiveAllele(energyStore)).Store;
+		energy = ((DoubleResourceStoreAllele) myGenome.GetActiveAllele(EnergyStoreGene)).Store;
 	}
 
 	void Update() {

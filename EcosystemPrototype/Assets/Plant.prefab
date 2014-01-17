@@ -95,6 +95,7 @@ MonoBehaviour:
   nutrient: 0
   MaxConsumptionRate: 1
   ConsumptionProbability: .10000000149011612
+  NutrientStoreGeneBase: nutrientstore
 --- !u!114 &11400002
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -135,6 +136,7 @@ MonoBehaviour:
   CanMove: 0
   nutrient: 3
   MaxDepositRate: 1
+  NutrientStoreGeneBase: nutrientstore
 --- !u!114 &11400008
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -166,6 +168,8 @@ MonoBehaviour:
   EnergyInput: 1
   EnergyOutput: 5
   MaxDigestionRate: 1
+  EnergyStoreGene: energystore
+  NutrientStoreGeneBase: nutrientstore
 --- !u!114 &11400012
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -192,7 +196,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gene: sex
-  energyStore: energystore
+  EnergyStoreGene: energystore
   maxPollenTravelDistance: 2
   maxSeedTravelDistance: 2
   pollenEnergyCost: 2
@@ -209,7 +213,7 @@ MonoBehaviour:
   m_Name: 
   m_EditorClassIdentifier: 
   gene: sex
-  energyStore: energystore
+  EnergyStoreGene: energystore
   maxPollenTravelDistance: 2
   maxSeedTravelDistance: 2
   pollenEnergyCost: 2
@@ -259,6 +263,8 @@ MonoBehaviour:
   EnergyInput: 1
   EnergyOutput: 5
   MaxDigestionRate: 1
+  EnergyStoreGene: energystore
+  NutrientStoreGeneBase: nutrientstore
 --- !u!114 &11400024
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -274,6 +280,7 @@ MonoBehaviour:
   CanMove: 0
   nutrient: 3
   MaxDepositRate: 1
+  NutrientStoreGeneBase: nutrientstore
 --- !u!114 &11400026
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -290,6 +297,7 @@ MonoBehaviour:
   nutrient: 0
   MaxConsumptionRate: 1
   ConsumptionProbability: .10000000149011612
+  NutrientStoreGeneBase: nutrientstore
 --- !u!114 &11400028
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -367,6 +375,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gene: metabolism
   MetabolicRate: .0099999997764825821
+  EnergyStoreGene: energystore
 --- !u!114 &11400040
 MonoBehaviour:
   m_ObjectHideFlags: 1
@@ -380,6 +389,7 @@ MonoBehaviour:
   m_EditorClassIdentifier: 
   gene: metabolism
   MetabolicRate: .0099999997764825821
+  EnergyStoreGene: energystore
 --- !u!114 &11400042
 MonoBehaviour:
   m_ObjectHideFlags: 1
