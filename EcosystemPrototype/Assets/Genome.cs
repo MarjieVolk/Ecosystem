@@ -18,67 +18,30 @@ public class Genome : MonoBehaviour {
         //No non-editor-defined alleles will be present at this time
 		alleles = new Dictionary<string, GeneObj>();
 
-        registerAlleleComponents();
         generateDataAlleles();
         //generateNumericDataAlleles();
+        registerAlleleComponents();
 	}
 
     private void generateDataAlleles()
     {
-        // Create data alleles for every allele that wants them
-        // These data alleles should be in the same half-genome as their parent allele!!
-
-        //for each gene in the genome
-        string[] originalGenes = alleles.Keys.ToArray<string>();
-        foreach (string gene in originalGenes)
+        Allele[] allAlleles = this.gameObject.GetComponents<Allele>();
+        foreach (Allele functionalAllele in allAlleles)
         {
-            GeneObj genotype = alleles[gene];
-
-            //generate the data alleles for the active and inactive alleles in that gene
-            Dictionary<string, Allele> activeDataAlleles = generateDataAlleles(genotype.active);
-            Dictionary<string, Allele> inactiveDataAlleles = generateDataAlleles(genotype.inactive);
-
-            //generate default data alleles where necessary (can occur if genotype.active and genotype.inactive have different types)
-            IEnumerable<string> dataGenes = Enumerable.Union<string>(activeDataAlleles.Keys, inactiveDataAlleles.Keys);
-            generateDefaultAlleles(dataGenes, activeDataAlleles, inactiveDataAlleles);
-            generateDefaultAlleles(dataGenes, inactiveDataAlleles, activeDataAlleles);
-
-            foreach (string dataGene in dataGenes)
-            {
-                alleles[dataGene] = new GeneObj(activeDataAlleles[dataGene], inactiveDataAlleles[dataGene]);
-            }
+            generateDataAlleles(functionalAllele);
         }
     }
 
-    private void generateDefaultAlleles(IEnumerable<string> genes, Dictionary<string, Allele> target, Dictionary<string, Allele> source)
-    {
-        foreach (string gene in genes)
-        {
-            if (!target.ContainsKey(gene))
-            {
-                if(source[gene].GetType().Equals(typeof(DataAllele)))
-                {
-                    DataAllele defaultCopy = gameObject.AddComponent<DataAllele>();
-                    defaultCopy.CopyFrom((DataAllele)source[gene]);
-                    defaultCopy.ResetToDefaultValues();
-                    target[gene] = defaultCopy;
-                }
-            }
-        }
-    }
+    
 
     /// <summary>
     /// Generates the data alleles needed to allow the configuration of the given functional allele to be genetically inherited as intended.
+    /// Adds them to the organism in the process.
     /// </summary>
     /// <param name="functionalAllele"></param>
-    /// <returns>
-    /// The data alleles that collectively store the configuration of functionalAllele, organized by their full gene name.
-    /// </returns>
-    private Dictionary<string, Allele> generateDataAlleles(Allele functionalAllele)
+    private void generateDataAlleles(Allele functionalAllele)
     {
         Type alleleType = functionalAllele.GetType();
-
-        Dictionary<string, Allele> dataAlleles = new Dictionary<string, Allele>();
 
         //for each inheritance group
         Dictionary<string, List<FieldInfo>> fields = collectFieldsByInheritanceGroup(alleleType);
@@ -94,10 +57,7 @@ public class Genome : MonoBehaviour {
                 //put that data in the data allele
                 dataAllele.Data[field] = field.GetValue(functionalAllele);
             }
-
-            dataAlleles[dataAllele.gene] = dataAllele;
         }
-        return dataAlleles;
     }
 
     private static string nameDataAllele(Allele functionalAllele, string inheritanceGroup)
@@ -170,9 +130,7 @@ public class Genome : MonoBehaviour {
         halfOne = new Dictionary<string, Allele>(halfOne);
         halfTwo = new Dictionary<string, Allele>(halfTwo);
 
-        IEnumerable<string> allGenes = Enumerable.Union<string>(halfOne.Keys, halfTwo.Keys);
-        generateDefaultAlleles(allGenes, halfOne, halfTwo);
-        generateDefaultAlleles(allGenes, halfTwo, halfOne);
+        DataAllele.GenerateDefaultDataAlleles(gameObject, halfOne, halfTwo);
 
         //for each gene in either organism's genotype
 		foreach (string type in halfOne.Keys) {

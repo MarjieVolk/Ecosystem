@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Reflection;
 using System.Text;
+using UnityEngine;
 
 namespace Assets.Alleles
 {
@@ -41,6 +42,30 @@ namespace Assets.Alleles
                 //(a valid assumption, since that's the only way this field could be here)
                 InheritSeparatelyAttribute attribute = (InheritSeparatelyAttribute)field.GetCustomAttributes(typeof(InheritSeparatelyAttribute), false)[0];
                 Data[field] = attribute.DefaultValue;
+            }
+        }
+
+        public static void GenerateDefaultDataAlleles(GameObject gameObject, Dictionary<string, Allele> halfOne, Dictionary<string, Allele> halfTwo)
+        {
+            IEnumerable<string> allGenes = Enumerable.Union<string>(halfOne.Keys, halfTwo.Keys);
+            generateDefaultAlleles(gameObject, allGenes, halfOne, halfTwo);
+            generateDefaultAlleles(gameObject, allGenes, halfTwo, halfOne);
+        }
+
+        private static void generateDefaultAlleles(GameObject gameObject, IEnumerable<string> genes, Dictionary<string, Allele> target, Dictionary<string, Allele> source)
+        {
+            foreach (string gene in genes)
+            {
+                if (!target.ContainsKey(gene))
+                {
+                    if (source[gene].GetType().Equals(typeof(DataAllele)))
+                    {
+                        DataAllele defaultCopy = gameObject.AddComponent<DataAllele>();
+                        defaultCopy.CopyFrom((DataAllele)source[gene]);
+                        defaultCopy.ResetToDefaultValues();
+                        target[gene] = defaultCopy;
+                    }
+                }
             }
         }
     }
