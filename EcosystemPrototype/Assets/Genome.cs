@@ -28,61 +28,8 @@ public class Genome : MonoBehaviour {
         Allele[] allAlleles = this.gameObject.GetComponents<Allele>();
         foreach (Allele functionalAllele in allAlleles)
         {
-            generateDataAlleles(functionalAllele);
+            DataAllele.generateDataAlleles(gameObject, functionalAllele);
         }
-    }
-
-    
-
-    /// <summary>
-    /// Generates the data alleles needed to allow the configuration of the given functional allele to be genetically inherited as intended.
-    /// Adds them to the organism in the process.
-    /// </summary>
-    /// <param name="functionalAllele"></param>
-    private void generateDataAlleles(Allele functionalAllele)
-    {
-        Type alleleType = functionalAllele.GetType();
-
-        //for each inheritance group
-        Dictionary<string, List<FieldInfo>> fields = collectFieldsByInheritanceGroup(alleleType);
-        foreach (string inheritanceGroup in fields.Keys)
-        {
-            //create a data allele
-            DataAllele dataAllele = gameObject.AddComponent<DataAllele>();
-            dataAllele.gene = nameDataAllele(functionalAllele, inheritanceGroup);
-
-            //for each field in the inheritance group
-            foreach (FieldInfo field in fields[inheritanceGroup])
-            {
-                //put that data in the data allele
-                dataAllele.Data[field] = field.GetValue(functionalAllele);
-            }
-        }
-    }
-
-    private static string nameDataAllele(Allele functionalAllele, string inheritanceGroup)
-    {
-        return functionalAllele.gene + GENE_DELIMITER + inheritanceGroup;
-    }
-
-    private static Dictionary<string, List<FieldInfo>> collectFieldsByInheritanceGroup(Type allele)
-    {
-        Dictionary<string, List<FieldInfo>> fields = new Dictionary<string, List<FieldInfo>>();
-        foreach (FieldInfo field in allele.GetFields())
-        {
-            InheritSeparatelyAttribute[] attributes = (InheritSeparatelyAttribute[])field.GetCustomAttributes(typeof(InheritSeparatelyAttribute), false);
-            if (attributes.Length > 1) throw new InvalidAttributeException();
-            foreach (InheritSeparatelyAttribute attribute in attributes)
-            {
-                string inheritanceGroup = attribute.InheritanceGroup;
-                if (!fields.ContainsKey(inheritanceGroup))
-                {
-                    fields[inheritanceGroup] = new List<FieldInfo>();
-                }
-                fields[inheritanceGroup].Add(field);
-            }
-        }
-        return fields;
     }
 
     private void generateNumericDataAlleles()
@@ -173,7 +120,7 @@ public class Genome : MonoBehaviour {
                 if (attributes.Length == 1)
                 {
                     //inject the value in the data allele into the field
-                    string dataAlleleGene = nameDataAllele(active, attributes[0].InheritanceGroup);
+                    string dataAlleleGene = DataAllele.nameDataAllele(active, attributes[0].InheritanceGroup);
                     DataAllele data = (DataAllele)alleles[dataAlleleGene].active;
                     field.SetValue(active, data.Data[field]);
                 }
