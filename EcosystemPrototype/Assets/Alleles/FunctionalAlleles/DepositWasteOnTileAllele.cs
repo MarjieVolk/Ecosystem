@@ -15,7 +15,7 @@ namespace Assets.Alleles.FunctionalAlleles
 		public string nutrientValueGene;
 
         private Tile closestTile;
-		private Dictionary<IntegerResourceStore, Nutrient> wasteNutrients;
+        private NutrientValueAllele nutrientVals;
 
         private const string NUTRIENT_STORE = "nutrientstore";
 
@@ -23,18 +23,7 @@ namespace Assets.Alleles.FunctionalAlleles
         {
             closestTile = TileManager.instance.getTileClosestTo(transform.position);
 
-			wasteNutrients = new Dictionary<IntegerResourceStore, Nutrient>();
-			NutrientValueAllele nutrientVals = (NutrientValueAllele) genome.GetActiveAllele(nutrientValueGene);
-			foreach (object o in Enum.GetValues(typeof(Nutrient))) {
-				Nutrient n = (Nutrient) o;
-				if (nutrientVals.getNutrientPriority(n) == 0) {
-					Genome g = gameObject.GetComponent<Genome>();
-					String gene = NUTRIENT_STORE + Genome.GENE_DELIMITER + n.ToString();
-					IntegerResourceStoreAllele storeAllele = (IntegerResourceStoreAllele) g.GetActiveAllele(gene);
-					IntegerResourceStore store = storeAllele.Store;
-					wasteNutrients[store] = n;
-				}
-			}
+			nutrientVals = (NutrientValueAllele) genome.GetActiveAllele(nutrientValueGene);
         }
 
         void Update()
@@ -45,7 +34,9 @@ namespace Assets.Alleles.FunctionalAlleles
                 closestTile = TileManager.instance.getTileClosestTo(transform.position);
             }
 
-			int amountDeposited = 0;
+            Dictionary<IntegerResourceStore, Nutrient> wasteNutrients = determineWasteNutrients();
+
+            int amountDeposited = 0;
 
 			foreach (IntegerResourceStore store in wasteNutrients.Keys) {
 				int amountAvailable = store.Amount;
@@ -56,6 +47,24 @@ namespace Assets.Alleles.FunctionalAlleles
 				amountDeposited += amountToConsume;
 			}
 
+        }
+
+        private Dictionary<IntegerResourceStore, Nutrient> determineWasteNutrients()
+        {
+            Dictionary<IntegerResourceStore, Nutrient> wasteNutrients = new Dictionary<IntegerResourceStore, Nutrient>();
+            foreach (object o in Enum.GetValues(typeof(Nutrient)))
+            {
+                Nutrient n = (Nutrient)o;
+                if (nutrientVals.getNutrientPriority(n) == 0)
+                {
+                    Genome g = gameObject.GetComponent<Genome>();
+                    String gene = NUTRIENT_STORE + Genome.GENE_DELIMITER + n.ToString();
+                    IntegerResourceStoreAllele storeAllele = (IntegerResourceStoreAllele)g.GetActiveAllele(gene);
+                    IntegerResourceStore store = storeAllele.Store;
+                    wasteNutrients[store] = n;
+                }
+            }
+            return wasteNutrients;
         }
     }
 }
