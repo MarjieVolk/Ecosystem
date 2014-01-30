@@ -10,19 +10,31 @@ namespace Assets.Alleles.FunctionalAlleles
         [GeneticallyInheritable]
         public bool CanMove;
         [GeneticallyInheritable]
-        public Nutrient nutrient;
-        [GeneticallyInheritable]
-        public int MaxDepositRate;
+		public int MaxDepositRate;
+		[GeneticallyInheritable]
+		public string nutrientValueGene;
 
         private Tile closestTile;
-        private IntegerResourceStore nutrientStore;
+		private Dictionary<IntegerResourceStore, Nutrient> wasteNutrients;
 
         private const string NUTRIENT_STORE = "nutrientstore";
 
         void Start()
         {
             closestTile = TileManager.instance.getTileClosestTo(transform.position);
-            nutrientStore = ((IntegerResourceStoreAllele)gameObject.GetComponent<Genome>().GetActiveAllele(NUTRIENT_STORE + Genome.GENE_DELIMITER + nutrient)).Store;
+
+			wasteNutrients = new Dictionary<IntegerResourceStore, Nutrient>();
+			NutrientValueAllele nutrientVals = (NutrientValueAllele) genome.GetActiveAllele(nutrientValueGene);
+			foreach (object o in Enum.GetValues(typeof(Nutrient))) {
+				Nutrient n = (Nutrient) o;
+				if (nutrientVals.getNutrientPriority(n) == 0) {
+					Genome g = gameObject.GetComponent<Genome>();
+					String gene = NUTRIENT_STORE + Genome.GENE_DELIMITER + n.ToString();
+					IntegerResourceStoreAllele storeAllele = (IntegerResourceStoreAllele) g.GetActiveAllele(gene);
+					IntegerResourceStore store = storeAllele.Store;
+					wasteNutrients[store] = n;
+				}
+			}
         }
 
         void Update()
@@ -33,11 +45,17 @@ namespace Assets.Alleles.FunctionalAlleles
                 closestTile = TileManager.instance.getTileClosestTo(transform.position);
             }
 
-            int amountAvailable = nutrientStore.Amount;
+			int amountDeposited = 0;
 
-            int amountToConsume = Math.Min(amountAvailable, MaxDepositRate);
-            nutrientStore.removeResource(amountToConsume);
-            closestTile.addNutrient(nutrient, amountToConsume);
+			foreach (IntegerResourceStore store in wasteNutrients.Keys) {
+				int amountAvailable = store.Amount;
+				
+				int amountToConsume = Math.Min(amountAvailable, MaxDepositRate - amountDeposited);
+				store.removeResource(amountToConsume);
+				closestTile.addNutrient(wasteNutrients[store], amountToConsume);
+				amountDeposited += amountToConsume;
+			}
+
         }
     }
 }

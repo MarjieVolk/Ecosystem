@@ -55,7 +55,7 @@ public class ReproductionAllele : Allele
 				Tile t = possibleTiles[gen.Next(possibleTiles.GetLength(0))];
 
 				if (!t.hasPlant()) {
-					//TODO: make plant
+					//make plant
 					GameObject child = GameObject.CreatePrimitive(PrimitiveType.Capsule);
 					child.transform.position = t.transform.position;
 					child.transform.localScale = this.transform.localScale;

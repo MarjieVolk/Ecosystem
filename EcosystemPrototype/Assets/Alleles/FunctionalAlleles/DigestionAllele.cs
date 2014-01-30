@@ -17,6 +17,11 @@ namespace Assets.Alleles.FunctionalAlleles
         public double EnergyOutput;
         [GeneticallyInheritable]
         public int MaxDigestionRate;
+		[GeneticallyInheritable]
+		public int priority;
+
+		[GeneticallyInheritable]
+		public string nutrientValueGene;
 
         private IntegerResourceStore inputStore;
         private IntegerResourceStore outputStore;
@@ -34,6 +39,9 @@ namespace Assets.Alleles.FunctionalAlleles
             //TODO look up nutrient storage properly
             inputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(NUTRIENT_STORE + Genome.GENE_DELIMITER + Input)).Store;
             outputStore = ((IntegerResourceStoreAllele)genome.GetActiveAllele(NUTRIENT_STORE + Genome.GENE_DELIMITER + Output)).Store;
+
+			NutrientValueAllele v = (NutrientValueAllele) genome.GetActiveAllele(nutrientValueGene);
+			v.registerNutrientDesire(Input, priority);
         }
 
         // Update is called once per frame
